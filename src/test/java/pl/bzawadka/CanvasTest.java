@@ -14,9 +14,8 @@ public class CanvasTest {
 
     @Test
     public void canvasOfCorrectSizeIsDrawn() {
-        Canvas canvas = new Canvas(20, 4);
-        String expectedCanvasOutput = readFile("canvas.txt");
-        assertThat(canvas.draw()).isEqualTo(expectedCanvasOutput);
+        assertThat(new Canvas(20, 4).draw()).isEqualTo(readFile("canvas_20x4.txt"));
+        assertThat(new Canvas(6, 3).draw()).isEqualTo(readFile("canvas_6x3.txt"));
     }
 
     private String readFile(String fileName) {
