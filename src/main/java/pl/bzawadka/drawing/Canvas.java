@@ -1,4 +1,4 @@
-package pl.bzawadka;
+package pl.bzawadka.drawing;
 
 import org.apache.commons.lang3.Validate;
 

@@ -1,4 +1,4 @@
-package pl.bzawadka;
+package pl.bzawadka.drawing;
 
 public class App {
 

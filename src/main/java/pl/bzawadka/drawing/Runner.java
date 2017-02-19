@@ -1,4 +1,4 @@
-package pl.bzawadka;
+package pl.bzawadka.drawing;
 
 import java.io.InputStream;
 import java.io.PrintStream;
