@@ -4,7 +4,7 @@ public enum CommandType {
     CREATE_CANVAS('C'),
     DRAW_LINE('L'),
     DRAW_RECTANGLE('R'),
-    BRUSH('B'),
+    BUCKET_FILL('B'),
     QUIT('Q');
 
     private Character code;

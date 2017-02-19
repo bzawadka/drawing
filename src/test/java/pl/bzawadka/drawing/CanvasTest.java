@@ -52,6 +52,9 @@ public class CanvasTest {
         Drawing rectangle = rectangle(14, 1, 18, 3);
         canvas.place(rectangle);
         assertThat(canvas.draw()).isEqualTo(fileContent("canvas_20x4_with_2lines_rectangle.txt"));
+
+        canvas.bucketFill(10, 3, 'o');
+        assertThat(canvas.draw()).isEqualTo(fileContent("canvas_20x4_with_2lines_rectangle_filled.txt"));
     }
 
     private String fileContent(String fileName) {

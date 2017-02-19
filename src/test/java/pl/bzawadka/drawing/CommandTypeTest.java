@@ -23,7 +23,7 @@ public class CommandTypeTest {
         assertThat(CommandType.parseFrom('l')).isEqualTo(DRAW_LINE);
         assertThat(CommandType.parseFrom('R')).isEqualTo(DRAW_RECTANGLE);
         assertThat(CommandType.parseFrom('r')).isEqualTo(DRAW_RECTANGLE);
-        assertThat(CommandType.parseFrom('B')).isEqualTo(BRUSH);
-        assertThat(CommandType.parseFrom('b')).isEqualTo(BRUSH);
+        assertThat(CommandType.parseFrom('B')).isEqualTo(BUCKET_FILL);
+        assertThat(CommandType.parseFrom('b')).isEqualTo(BUCKET_FILL);
     }
 }

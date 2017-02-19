@@ -66,4 +66,8 @@ public class Canvas implements DrawableArea {
         }
         drawingArea.append("\n");
     }
+
+    public void bucketFill(int x, int y, char character) {
+        //TODO implement
+    }
 }
