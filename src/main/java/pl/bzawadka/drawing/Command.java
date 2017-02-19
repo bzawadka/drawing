@@ -13,12 +13,14 @@ import java.util.stream.Stream;
 public class Command {
     private static Pattern COMMAND_PATTERN = Pattern.compile("(?<commandKey>[CLRB])[\\s\\d]*");
 
+    public final CommandType commandType;
     public final char key;
     public final Optional<Character> character;
     public final List<Integer> parameters;
 
     public Command(char key, Optional<Character> character, List<Integer> parameters) {
         this.key = key;
+        this.commandType = CommandType.parseFrom(key);
         this.character = character;
         this.parameters = parameters;
     }

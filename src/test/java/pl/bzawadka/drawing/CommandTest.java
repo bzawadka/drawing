@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.StrictAssertions.assertThatThrownBy;
 import static pl.bzawadka.drawing.CommandAssert.assertThat;
+import static pl.bzawadka.drawing.CommandType.*;
 
 public class CommandTest {
 
@@ -21,14 +22,17 @@ public class CommandTest {
     public void commandIsParsed() {
         Command command = Command.parse("C 20 4");
         assertThat(command).hasKey('C');
+        assertThat(command).hasCommandType(CREATE_CANVAS);
         assertThat(command).hasOnlyParameters(20, 4);
 
         command = Command.parse("L 1 2 6 2");
         assertThat(command).hasKey('L');
+        assertThat(command).hasCommandType(DRAW_LINE);
         assertThat(command).hasOnlyParameters(1, 2, 6, 2);
 
         command = Command.parse("R 14 1 18 3");
         assertThat(command).hasKey('R');
+        assertThat(command).hasCommandType(DRAW_RECTANGLE);
         assertThat(command).hasOnlyParameters(14, 1, 18, 3);
     }
 
