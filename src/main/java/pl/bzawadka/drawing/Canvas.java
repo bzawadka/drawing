@@ -5,6 +5,8 @@ import org.apache.commons.lang3.Validate;
 import java.util.HashMap;
 import java.util.Map;
 
+import static pl.bzawadka.drawing.Point.point;
+
 public class Canvas implements DrawableArea {
     private static final char AXIS_X_CHARACTER = '-';
     private static final char AXIS_Y_CHARACTER = '|';
@@ -30,19 +32,19 @@ public class Canvas implements DrawableArea {
         drawing.getPoints().forEach(point -> placePointOnCanvas(point, drawing.getCharacter()));
     }
 
-    private void placePointOnCanvas(Point point, char character) {
-        paintedPoints.put(point, character);
+    private void placePointOnCanvas(Point coordinates, char character) {
+        paintedPoints.put(coordinates, character);
     }
 
+    @Override
     public String draw() {
         StringBuffer drawingArea = new StringBuffer();
         drawXaxisLineOn(drawingArea);
         for (int y = 1; y <= height; y++) {
             drawYaxisCharacterOn(drawingArea);
             for (int x = 1; x <= width; x++) {
-                Point point = new Point(x, y);
-                if (paintedPoints.containsKey(point)) {
-                    drawingArea.append(paintedPoints.get(point));
+                if (paintedPoints.containsKey(point(x, y))) {
+                    drawingArea.append(paintedPoints.get(point(x, y)));
                 } else {
                     drawingArea.append(EMPTY_CHARACTER);
                 }
