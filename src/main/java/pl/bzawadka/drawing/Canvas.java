@@ -2,6 +2,8 @@ package pl.bzawadka.drawing;
 
 import org.apache.commons.lang3.Validate;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,7 +69,31 @@ public class Canvas implements DrawableArea {
         drawingArea.append("\n");
     }
 
-    public void bucketFill(int x, int y, char character) {
-        //TODO implement
+    public void bucketFill(Point startingPoint, char character) {
+        if (!pointIsWithinCanvas(startingPoint))
+            return;
+
+        Deque<Point> pointsToVisit = new ArrayDeque<>();
+        pointsToVisit.push(startingPoint);
+        while (!pointsToVisit.isEmpty()) {
+            Point p = pointsToVisit.pop();
+            if (pointIsNotYetPainted(p)) {
+                paintedPoints.put(p, character);
+            }
+            for (Point neighbour : p.getNeighbours()) {
+                if (pointIsNotYetPainted(neighbour) && pointIsWithinCanvas(neighbour)) {
+                    pointsToVisit.push(neighbour);
+                    System.out.println("pushing to stack: " + neighbour);
+                }
+            }
+        }
+    }
+
+    private boolean pointIsNotYetPainted(Point p) {
+        return !paintedPoints.containsKey(p);
+    }
+
+    private boolean pointIsWithinCanvas(Point point) {
+        return point.x > 0 && point.y > 0 && point.x <= width && point.y <= height;
     }
 }

@@ -11,6 +11,7 @@ import java.net.URL;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.StrictAssertions.assertThatThrownBy;
 import static pl.bzawadka.drawing.Line.line;
+import static pl.bzawadka.drawing.Point.point;
 import static pl.bzawadka.drawing.Rectangle.rectangle;
 
 public class CanvasTest {
@@ -53,7 +54,7 @@ public class CanvasTest {
         canvas.place(rectangle);
         assertThat(canvas.draw()).isEqualTo(fileContent("canvas_20x4_with_2lines_rectangle.txt"));
 
-        canvas.bucketFill(10, 3, 'o');
+        canvas.bucketFill(point(10, 3), 'o');
         assertThat(canvas.draw()).isEqualTo(fileContent("canvas_20x4_with_2lines_rectangle_filled.txt"));
     }
 
