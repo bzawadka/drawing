@@ -1,5 +1,6 @@
 package pl.bzawadka.drawing;
 
+import com.google.common.collect.ImmutableSet;
 import org.apache.commons.lang3.Validate;
 
 import java.util.Set;
@@ -12,12 +13,12 @@ public class Rectangle implements Drawing {
 
     @Override
     public Set<Point> getPoints() {
-        return null;
+        return ImmutableSet.of();
     }
 
     @Override
     public char getCharacter() {
-        return 0;
+        return 'x';
     }
 
     public static Rectangle rectangle(int x1, int y1, int x2, int y2) {

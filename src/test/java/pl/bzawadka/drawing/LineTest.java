@@ -26,6 +26,7 @@ public class LineTest {
         assertThat(line).hasY1(2);
         assertThat(line).hasX2(6);
         assertThat(line).hasY2(2);
+        assertThat(line).hasCharacter('x');
     }
 
     //TODO what about a line with negative coordinates?
