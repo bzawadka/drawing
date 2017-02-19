@@ -23,7 +23,8 @@ public class Runner {
         do {
             out.print("enter command: ");
             line = scanner.nextLine();
-            out.println(new Canvas(1,1).draw());
+            Command command = Command.parse(line);
+            out.println(command);
         } while (!"Q".equalsIgnoreCase(line));
         scanner.close();
     }

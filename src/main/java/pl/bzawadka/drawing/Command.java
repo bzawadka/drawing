@@ -1,6 +1,7 @@
 package pl.bzawadka.drawing;
 
 import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,5 +35,10 @@ public class Command {
                 .collect(Collectors.toList());
 
         return new Command(key, Optional.empty(), parameters);
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 }
