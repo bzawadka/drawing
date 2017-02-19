@@ -36,11 +36,16 @@ public class CanvasTest {
     }
 
     @Test
-    public void lineCanBeDrawnOnCanvas() {
+    public void linesCanBeDrawnOnCanvas() {
         Canvas canvas = new Canvas(20, 4);
-        Drawing drawing = new Line(1, 2, 6, 2);
-        canvas.place(drawing);
-        assertThat(canvas.draw()).isEqualTo(fileContent("canvas_20x4_with_line.txt"));
+
+        Drawing horizontalLine = new Line(1, 2, 6, 2);
+        canvas.place(horizontalLine);
+        assertThat(canvas.draw()).isEqualTo(fileContent("canvas_20x4_with_1line.txt"));
+
+        Drawing verticalLine = new Line(6, 3, 6, 4);
+        canvas.place(verticalLine);
+        assertThat(canvas.draw()).isEqualTo(fileContent("canvas_20x4_with_2lines.txt"));
     }
 
     private String fileContent(String fileName) {
