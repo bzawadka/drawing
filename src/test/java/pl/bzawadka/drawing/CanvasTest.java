@@ -58,6 +58,28 @@ public class CanvasTest {
         assertThat(canvas.draw()).isEqualTo(fileContent("canvas_20x4_with_2lines_rectangle_filled.txt"));
     }
 
+    @Test
+    public void coloringRectangles() {
+        Canvas canvas = new Canvas(12, 4);
+
+        Drawing rectangle = rectangle(2, 2, 5, 4);
+        canvas.place(rectangle);
+        assertThat(canvas.draw()).isEqualTo(fileContent("canvas_10x4_with_1rectangle.txt"));
+
+        canvas.bucketFill(point(3, 3), 'Z');
+        assertThat(canvas.draw()).isEqualTo(fileContent("canvas_10x4_with_1rectangle_filled.txt"));
+
+        rectangle = rectangle(7, 1, 10, 3);
+        canvas.place(rectangle);
+        assertThat(canvas.draw()).isEqualTo(fileContent("canvas_10x4_with_2rectangles.txt"));
+
+        canvas.bucketFill(point(8, 2), 'B');
+        assertThat(canvas.draw()).isEqualTo(fileContent("canvas_10x4_with_2rectangles_filled.txt"));
+
+        canvas.bucketFill(point(1, 1), 'y');
+        assertThat(canvas.draw()).isEqualTo(fileContent("canvas_10x4_with_2rectangles_filled_completely.txt"));
+    }
+
     private String fileContent(String fileName) {
         String content = null;
         try {
