@@ -25,36 +25,43 @@ public class Canvas implements DrawableArea {
         this.paintedPoints = new HashMap<>();
     }
 
-    public String draw() {
-        StringBuffer buffer = new StringBuffer();
-        drawXaxis(buffer);
+    @Override
+    public void place(Drawing drawing) {
+        drawing.getPoints().forEach(point -> placePointOnCanvas(point, drawing.getCharacter()));
+    }
 
-        for (int y = 0; y < height; y++) {
-            buffer.append(AXIS_Y_CHARACTER);
-            for (int x = 0; x < width; x++) {
+    private void placePointOnCanvas(Point point, char character) {
+        paintedPoints.put(point, character);
+    }
+
+    public String draw() {
+        StringBuffer drawingArea = new StringBuffer();
+        drawXaxisLineOn(drawingArea);
+        for (int y = 1; y <= height; y++) {
+            drawYaxisCharacterOn(drawingArea);
+            for (int x = 1; x <= width; x++) {
                 Point point = new Point(x, y);
                 if (paintedPoints.containsKey(point)) {
-                    buffer.append(paintedPoints.get(point));
+                    drawingArea.append(paintedPoints.get(point));
                 } else {
-                    buffer.append(EMPTY_CHARACTER);
+                    drawingArea.append(EMPTY_CHARACTER);
                 }
             }
-            buffer.append(AXIS_Y_CHARACTER);
-            buffer.append("\n");
+            drawYaxisCharacterOn(drawingArea);
+            drawingArea.append("\n");
         }
-
-        drawXaxis(buffer);
-        return buffer.toString();
+        drawXaxisLineOn(drawingArea);
+        return drawingArea.toString();
     }
 
-    private void drawXaxis(StringBuffer buffer) {
-        for (int x = 0; x < width + 2; x++) {
-            buffer.append(AXIS_X_CHARACTER);
-        }
-        buffer.append("\n");
+    private void drawYaxisCharacterOn(StringBuffer drawingArea) {
+        drawingArea.append(AXIS_Y_CHARACTER);
     }
 
-    public void place(Drawing drawing) {
-
+    private void drawXaxisLineOn(StringBuffer drawingArea) {
+        for (int x = 0; x <= width + 1; x++) {
+            drawingArea.append(AXIS_X_CHARACTER);
+        }
+        drawingArea.append("\n");
     }
 }

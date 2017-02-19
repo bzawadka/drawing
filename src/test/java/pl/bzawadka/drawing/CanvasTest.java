@@ -31,8 +31,8 @@ public class CanvasTest {
 
     @Test
     public void canvasOfCorrectSizeIsDrawn() {
-        assertThat(new Canvas(20, 4).draw()).isEqualTo(readFile("canvas_20x4.txt"));
-        assertThat(new Canvas(6, 3).draw()).isEqualTo(readFile("canvas_6x3.txt"));
+        assertThat(new Canvas(20, 4).draw()).isEqualTo(fileContent("canvas_20x4.txt"));
+        assertThat(new Canvas(6, 3).draw()).isEqualTo(fileContent("canvas_6x3.txt"));
     }
 
     @Test
@@ -40,10 +40,10 @@ public class CanvasTest {
         Canvas canvas = new Canvas(20, 4);
         Drawing drawing = new Line(1, 2, 6, 2);
         canvas.place(drawing);
-        assertThat(canvas.draw()).isEqualTo(readFile("canvas_20x4_with_line.txt"));
+        assertThat(canvas.draw()).isEqualTo(fileContent("canvas_20x4_with_line.txt"));
     }
 
-    private String readFile(String fileName) {
+    private String fileContent(String fileName) {
         String content = null;
         try {
             URL resource = this.getClass().getResource(fileName);
