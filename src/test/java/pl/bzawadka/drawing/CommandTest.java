@@ -25,6 +25,10 @@ public class CommandTest {
         assertThat(command).hasCommandType(CREATE_CANVAS);
         assertThat(command).hasOnlyParameters(20, 4);
 
+        command = Command.parse("Q");
+        assertThat(command).hasKey('Q');
+        assertThat(command).hasCommandType(QUIT);
+
         command = Command.parse("L 1 2 6 2");
         assertThat(command).hasKey('L');
         assertThat(command).hasCommandType(DRAW_LINE);

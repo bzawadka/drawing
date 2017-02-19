@@ -13,6 +13,10 @@ public enum CommandType {
         this.code = code;
     }
 
+    public Character getCode() {
+        return code;
+    }
+
     public static CommandType parseFrom(char code) {
         for (CommandType type : CommandType.values()) {
             if (type.code.toString().equalsIgnoreCase(String.valueOf(code)))

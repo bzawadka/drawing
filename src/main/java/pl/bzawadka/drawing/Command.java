@@ -1,5 +1,6 @@
 package pl.bzawadka.drawing;
 
+import com.google.common.collect.ImmutableList;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -9,6 +10,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static pl.bzawadka.drawing.CommandType.QUIT;
 
 public class Command {
     private static Pattern COMMAND_PATTERN = Pattern.compile("(?<commandKey>[CLRB])[\\s\\d]*");
@@ -26,17 +29,30 @@ public class Command {
     }
 
     public static Command parse(String src) {
+        return isQuitCommand(src) ? quitCommand() : parametrizedCommand(src);
+    }
+
+    private static Command parametrizedCommand(String src) {
         Matcher matcher = COMMAND_PATTERN.matcher(src);
         Validate.isTrue(matcher.matches(), "Expected format of command is character followed by digits, separated by spaces, e.g. C 20 4");
         char key = matcher.group("commandKey").charAt(0);
+        return new Command(key, Optional.empty(), collectParameters(matcher));
+    }
 
+    private static List<Integer> collectParameters(Matcher matcher) {
         String commandArgs = matcher.group(0).substring(1);
-        List<Integer> parameters = Stream.of(commandArgs.split("\\s"))
+        return Stream.of(commandArgs.split("\\s"))
                 .filter(s -> !s.isEmpty())
                 .map(Integer::valueOf)
                 .collect(Collectors.toList());
+    }
 
-        return new Command(key, Optional.empty(), parameters);
+    private static boolean isQuitCommand(String src) {
+        return QUIT.getCode().toString().equalsIgnoreCase(src);
+    }
+
+    private static Command quitCommand() {
+        return new Command(QUIT.getCode().charValue(), Optional.empty(), ImmutableList.of());
     }
 
     @Override
