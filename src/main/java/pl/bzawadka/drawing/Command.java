@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 import static pl.bzawadka.drawing.CommandType.QUIT;
 
 public class Command {
+    private static final String COMMAND_KEY_GROUP_NAME = "commandKey";
     private static Pattern COMMAND_PATTERN = Pattern.compile("(?<commandKey>[CLRB])[\\s\\d]*");
 
     public final CommandType commandType;
@@ -35,7 +36,7 @@ public class Command {
     private static Command parametrizedCommand(String src) {
         Matcher matcher = COMMAND_PATTERN.matcher(src);
         Validate.isTrue(matcher.matches(), "Expected format of command is character followed by digits, separated by spaces, e.g. C 20 4");
-        char key = matcher.group("commandKey").charAt(0);
+        char key = matcher.group(COMMAND_KEY_GROUP_NAME).charAt(0);
         return new Command(key, Optional.empty(), collectParameters(matcher));
     }
 
