@@ -9,8 +9,25 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.StrictAssertions.assertThatThrownBy;
 
 public class CanvasTest {
+
+    @Test
+    public void canvasSizeIsChecked() {
+        assertThatThrownBy(() -> new Canvas(-1, 1))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Width of the canvas must be greater than 0");
+        assertThatThrownBy(() -> new Canvas(101, 1))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Width of the canvas must be smaller or equal to 100");
+        assertThatThrownBy(() -> new Canvas(1, -1))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Height of the canvas must be greater than 0");
+        assertThatThrownBy(() -> new Canvas(1, 101))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Height of the canvas must be smaller or equal to 100");
+    }
 
     @Test
     public void canvasOfCorrectSizeIsDrawn() {
