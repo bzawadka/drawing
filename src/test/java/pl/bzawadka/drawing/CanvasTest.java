@@ -10,6 +10,8 @@ import java.net.URL;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.StrictAssertions.assertThatThrownBy;
+import static pl.bzawadka.drawing.Line.line;
+import static pl.bzawadka.drawing.Rectangle.rectangle;
 
 public class CanvasTest {
 
@@ -36,16 +38,20 @@ public class CanvasTest {
     }
 
     @Test
-    public void linesCanBeDrawnOnCanvas() {
+    public void linesAndRectangleCanBeDrawnOnCanvas() {
         Canvas canvas = new Canvas(20, 4);
 
-        Drawing horizontalLine = new Line(1, 2, 6, 2);
+        Drawing horizontalLine = line(1, 2, 6, 2);
         canvas.place(horizontalLine);
         assertThat(canvas.draw()).isEqualTo(fileContent("canvas_20x4_with_1line.txt"));
 
-        Drawing verticalLine = new Line(6, 3, 6, 4);
+        Drawing verticalLine = line(6, 3, 6, 4);
         canvas.place(verticalLine);
         assertThat(canvas.draw()).isEqualTo(fileContent("canvas_20x4_with_2lines.txt"));
+
+        Drawing rectangle = rectangle(14, 1, 18, 3);
+        canvas.place(rectangle);
+        assertThat(canvas.draw()).isEqualTo(fileContent("canvas_20x4_with_2lines_rectangle.txt"));
     }
 
     private String fileContent(String fileName) {
