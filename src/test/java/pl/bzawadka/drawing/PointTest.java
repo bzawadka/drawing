@@ -12,16 +12,15 @@ public class PointTest {
 
     @Test
     public void pointFieldsAreSet() {
-        Point point = new Point(-1, 2, 'X');
+        Point point = new Point(-1, 2);
         assertThat(point).hasX(-1);
         assertThat(point).hasY(2);
-        assertThat(point).hasCharacter('X');
     }
 
     @Test
     public void pointCanBeUsedInCollection() {
-        Point p1 = new Point(1, 2, 'X');
-        Point p2 = new Point(1, 2, 'X');
+        Point p1 = new Point(1, 2);
+        Point p2 = new Point(1, 2);
         Assertions.assertThat(p1).isEqualTo(p2);
 
         Set<Point> points = new HashSet<>();

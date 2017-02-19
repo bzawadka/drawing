@@ -35,6 +35,14 @@ public class CanvasTest {
         assertThat(new Canvas(6, 3).draw()).isEqualTo(readFile("canvas_6x3.txt"));
     }
 
+    @Test
+    public void lineCanBeDrawnOnCanvas() {
+        Canvas canvas = new Canvas(20, 4);
+        Drawing drawing = new Line(1, 2, 6, 2);
+        canvas.place(drawing);
+        assertThat(canvas.draw()).isEqualTo(readFile("canvas_20x4_with_line.txt"));
+    }
+
     private String readFile(String fileName) {
         String content = null;
         try {

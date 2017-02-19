@@ -7,12 +7,14 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class Point {
     public final int x;
     public final int y;
-    public final char character;
 
-    public Point(int x, int y, char character) {
+    public Point(int x, int y) {
         this.x = x;
         this.y = y;
-        this.character = character;
+    }
+
+    public static Point point(int x, int y) {
+        return new Point(x, y);
     }
 
     @Override
