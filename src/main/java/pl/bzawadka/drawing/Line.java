@@ -8,6 +8,7 @@ import java.util.Set;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+import static pl.bzawadka.drawing.Point.point;
 
 public class Line implements Drawing {
     private static final char CHARACTER = 'x';
@@ -33,7 +34,7 @@ public class Line implements Drawing {
         Set<Point> points = new HashSet<>();
         for (int x = min(x1, x2); x <= max(x1, x2); x++)
             for (int y = min(y1, y2); y <= max(y1, y2); y++)
-                points.add(new Point(x, y));
+                points.add(point(x, y));
         return points;
     }
 
