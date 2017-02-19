@@ -13,11 +13,12 @@ public class Canvas implements DrawableArea {
     private static final char AXIS_X_CHARACTER = '-';
     private static final char AXIS_Y_CHARACTER = '|';
     private static final char EMPTY_CHARACTER = ' ';
+    private static final char LINE_SEPARATOR = '\n';
 
     private final int width;
     private final int height;
 
-    private Map<Point, Character> paintedPoints;
+    private Map<Point, Character> paintedCharacters;
 
     public Canvas(int width, int height) {
         Validate.isTrue(width > 0, "Width of the canvas must be greater than 0");
@@ -26,7 +27,7 @@ public class Canvas implements DrawableArea {
         Validate.isTrue(height <= 100, "Height of the canvas must be smaller or equal to 100");
         this.width = width;
         this.height = height;
-        this.paintedPoints = new HashMap<>();
+        this.paintedCharacters = new HashMap<>();
     }
 
     @Override
@@ -34,39 +35,25 @@ public class Canvas implements DrawableArea {
         drawing.getPoints().forEach(point -> placePointOnCanvas(point, drawing.getCharacter()));
     }
 
-    private void placePointOnCanvas(Point coordinates, char character) {
-        paintedPoints.put(coordinates, character);
-    }
-
     @Override
     public String draw() {
         StringBuffer drawingArea = new StringBuffer();
-        drawXaxisLineOn(drawingArea);
+        appendXaxisLineTo(drawingArea);
         for (int y = 1; y <= height; y++) {
-            drawYaxisCharacterOn(drawingArea);
+            appendYaxisCharacterTo(drawingArea);
             for (int x = 1; x <= width; x++) {
-                if (paintedPoints.containsKey(point(x, y))) {
-                    drawingArea.append(paintedPoints.get(point(x, y)));
+                Point point = point(x, y);
+                if (pointIsPaintedOnCanvas(point)) {
+                    drawingArea.append(paintedCharacters.get(point));
                 } else {
                     drawingArea.append(EMPTY_CHARACTER);
                 }
             }
-            drawYaxisCharacterOn(drawingArea);
-            drawingArea.append("\n");
+            appendYaxisCharacterTo(drawingArea);
+            drawingArea.append(LINE_SEPARATOR);
         }
-        drawXaxisLineOn(drawingArea);
+        appendXaxisLineTo(drawingArea);
         return drawingArea.toString();
-    }
-
-    private void drawYaxisCharacterOn(StringBuffer drawingArea) {
-        drawingArea.append(AXIS_Y_CHARACTER);
-    }
-
-    private void drawXaxisLineOn(StringBuffer drawingArea) {
-        for (int x = 0; x <= width + 1; x++) {
-            drawingArea.append(AXIS_X_CHARACTER);
-        }
-        drawingArea.append("\n");
     }
 
     public void bucketFill(Point startingPoint, char character) {
@@ -78,22 +65,40 @@ public class Canvas implements DrawableArea {
         while (!pointsToVisit.isEmpty()) {
             Point p = pointsToVisit.pop();
             if (pointIsNotYetPainted(p)) {
-                paintedPoints.put(p, character);
+                placePointOnCanvas(p, character);
             }
             for (Point neighbour : p.getNeighbours()) {
                 if (pointIsNotYetPainted(neighbour) && pointIsWithinCanvas(neighbour)) {
                     pointsToVisit.push(neighbour);
-                    System.out.println("pushing to stack: " + neighbour);
                 }
             }
         }
     }
 
-    private boolean pointIsNotYetPainted(Point p) {
-        return !paintedPoints.containsKey(p);
-    }
-
     private boolean pointIsWithinCanvas(Point point) {
         return point.x > 0 && point.y > 0 && point.x <= width && point.y <= height;
+    }
+
+    private boolean pointIsNotYetPainted(Point p) {
+        return !pointIsPaintedOnCanvas(p);
+    }
+
+    private boolean pointIsPaintedOnCanvas(Point point) {
+        return paintedCharacters.containsKey(point);
+    }
+
+    private void placePointOnCanvas(Point coordinates, char character) {
+        paintedCharacters.put(coordinates, character);
+    }
+
+    private void appendYaxisCharacterTo(StringBuffer drawingArea) {
+        drawingArea.append(AXIS_Y_CHARACTER);
+    }
+
+    private void appendXaxisLineTo(StringBuffer drawingArea) {
+        for (int x = 0; x <= width + 1; x++) {
+            drawingArea.append(AXIS_X_CHARACTER);
+        }
+        drawingArea.append(LINE_SEPARATOR);
     }
 }
