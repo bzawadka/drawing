@@ -67,11 +67,10 @@ public class Canvas implements DrawableArea {
             if (pointIsNotYetPainted(p)) {
                 placePointOnCanvas(p, character);
             }
-            for (Point neighbour : p.getNeighbours()) {
-                if (pointIsNotYetPainted(neighbour) && pointIsWithinCanvas(neighbour)) {
-                    pointsToVisit.push(neighbour);
-                }
-            }
+            p.getNeighbours().stream()
+                    .filter(notPaintedPoints -> pointIsNotYetPainted(notPaintedPoints))
+                    .filter(pointWithinCanvas -> pointIsWithinCanvas(pointWithinCanvas))
+                    .forEach(neighbourToVisit -> pointsToVisit.push(neighbourToVisit));
         }
     }
 
