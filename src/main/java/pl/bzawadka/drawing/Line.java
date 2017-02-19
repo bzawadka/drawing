@@ -18,6 +18,7 @@ public class Line implements Drawing {
 
     public Line(int x1, int y1, int x2, int y2) {
         Validate.isTrue(x1 == x2 || y1 == y2, "Line must be vertical or horizontal");
+        Validate.isTrue(x1 != x2 || y1 != y2, "Two points with the same coordinates do not create a line");
         this.x1 = x1;
         this.y1 = y1;
         this.x2 = x2;
