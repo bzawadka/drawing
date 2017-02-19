@@ -2,28 +2,37 @@ package pl.bzawadka.drawing;
 
 import org.apache.commons.lang3.Validate;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Command {
-    private static Pattern COMMAND_PATTERN = Pattern.compile("[CLRB](\\s\\d*)*");
+    private static Pattern COMMAND_PATTERN = Pattern.compile("(?<commandKey>[CLRB])[\\s\\d]*");
 
     public final char key;
     public final Optional<Character> character;
-    public final int[] coordinates;
+    public final List<Integer> parameters;
 
-    public Command(char key, Optional<Character> character, int... coordinates) {
+    public Command(char key, Optional<Character> character, List<Integer> parameters) {
         this.key = key;
         this.character = character;
-        this.coordinates = coordinates;
+        this.parameters = parameters;
     }
 
     public static Command parse(String src) {
         Matcher matcher = COMMAND_PATTERN.matcher(src);
         Validate.isTrue(matcher.matches(), "Expected format of command is character followed by digits, separated by spaces, e.g. C 20 4");
+        char key = matcher.group("commandKey").charAt(0);
 
+        String commandArgs = matcher.group(0).substring(1);
+        List<Integer> parameters = Stream.of(commandArgs.split("\\s"))
+                .filter(s -> !s.isEmpty())
+                .map(Integer::valueOf)
+                .collect(Collectors.toList());
 
-        return null;
+        return new Command(key, Optional.empty(), parameters);
     }
 }
