@@ -1,11 +1,11 @@
-package pl.bzawadka.drawing;
+package pl.bzawadka.drawing.shapes;
 
 import org.junit.Test;
 
 import static org.assertj.core.api.StrictAssertions.assertThatThrownBy;
-import static pl.bzawadka.drawing.Point.point;
-import static pl.bzawadka.drawing.Rectangle.rectangle;
-import static pl.bzawadka.drawing.RectangleAssert.assertThat;
+import static pl.bzawadka.drawing.shapes.Point.point;
+import static pl.bzawadka.drawing.shapes.Rectangle.rectangle;
+import static pl.bzawadka.drawing.shapes.RectangleAssert.assertThat;
 
 public class RectangleTest {
 

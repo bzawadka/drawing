@@ -1,4 +1,4 @@
-package pl.bzawadka.drawing;
+package pl.bzawadka.drawing.shapes;
 
 import com.google.common.collect.ImmutableSet;
 import org.apache.commons.lang3.Validate;
@@ -8,7 +8,7 @@ import java.util.Set;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
-import static pl.bzawadka.drawing.Point.point;
+import static pl.bzawadka.drawing.shapes.Point.point;
 
 public class Line implements Drawing {
     private static final char CHARACTER = 'x';

@@ -1,10 +1,10 @@
-package pl.bzawadka.drawing;
+package pl.bzawadka.drawing.runner;
 
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.StrictAssertions.assertThatThrownBy;
-import static pl.bzawadka.drawing.CommandType.*;
+import static pl.bzawadka.drawing.runner.CommandType.*;
 
 public class CommandTypeTest {
 

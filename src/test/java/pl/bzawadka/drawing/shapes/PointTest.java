@@ -1,4 +1,4 @@
-package pl.bzawadka.drawing;
+package pl.bzawadka.drawing.shapes;
 
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
@@ -6,8 +6,8 @@ import org.junit.Test;
 import java.util.HashSet;
 import java.util.Set;
 
-import static pl.bzawadka.drawing.Point.point;
-import static pl.bzawadka.drawing.PointAssert.assertThat;
+import static pl.bzawadka.drawing.shapes.PointAssert.assertThat;
+import static pl.bzawadka.drawing.shapes.Point.point;
 
 public class PointTest {
 

@@ -1,4 +1,4 @@
-package pl.bzawadka.drawing;
+package pl.bzawadka.drawing.runner;
 
 import com.google.common.collect.ImmutableList;
 import org.apache.commons.lang3.Validate;
@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static pl.bzawadka.drawing.CommandType.QUIT;
+import static pl.bzawadka.drawing.runner.CommandType.QUIT;
 
 public class Command {
     private static final Pattern COMMAND_PATTERN = Pattern.compile("(?<commandKey>[CLRBclrb])(?<numbers>[\\s\\d]*)(?<character>[a-z])?");

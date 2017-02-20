@@ -30,6 +30,8 @@
                 <configuration>
                     <packages>
                         <param>pl.bzawadka.drawing</param>
+                        <param>pl.bzawadka.drawing.shapes</param>
+                        <param>pl.bzawadka.drawing.runner</param>
                     </packages>
                 </configuration>
             </plugin>

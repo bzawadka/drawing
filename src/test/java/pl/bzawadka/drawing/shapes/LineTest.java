@@ -1,11 +1,11 @@
-package pl.bzawadka.drawing;
+package pl.bzawadka.drawing.shapes;
 
 import org.junit.Test;
 
 import static org.assertj.core.api.StrictAssertions.assertThatThrownBy;
-import static pl.bzawadka.drawing.Line.line;
-import static pl.bzawadka.drawing.LineAssert.assertThat;
-import static pl.bzawadka.drawing.Point.point;
+import static pl.bzawadka.drawing.shapes.LineAssert.assertThat;
+import static pl.bzawadka.drawing.shapes.Line.line;
+import static pl.bzawadka.drawing.shapes.Point.point;
 
 public class LineTest {
 

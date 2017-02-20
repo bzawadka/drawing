@@ -1,13 +1,15 @@
 package pl.bzawadka.drawing;
 
 import org.apache.commons.lang3.Validate;
+import pl.bzawadka.drawing.shapes.Drawing;
+import pl.bzawadka.drawing.shapes.Point;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 
-import static pl.bzawadka.drawing.Point.point;
+import static pl.bzawadka.drawing.shapes.Point.point;
 
 public class Canvas implements DrawableArea {
     private static final char AXIS_X_CHARACTER = '-';

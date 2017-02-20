@@ -1,4 +1,8 @@
-package pl.bzawadka.drawing;
+package pl.bzawadka.drawing.runner;
+
+import pl.bzawadka.drawing.Canvas;
+import pl.bzawadka.drawing.shapes.Drawing;
+import pl.bzawadka.drawing.shapes.Point;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -6,10 +10,10 @@ import java.util.List;
 import java.util.Scanner;
 
 import static java.util.Objects.requireNonNull;
-import static pl.bzawadka.drawing.CommandType.QUIT;
-import static pl.bzawadka.drawing.Line.line;
-import static pl.bzawadka.drawing.Point.point;
-import static pl.bzawadka.drawing.Rectangle.rectangle;
+import static pl.bzawadka.drawing.runner.CommandType.QUIT;
+import static pl.bzawadka.drawing.shapes.Line.line;
+import static pl.bzawadka.drawing.shapes.Point.point;
+import static pl.bzawadka.drawing.shapes.Rectangle.rectangle;
 
 public class Runner {
     private static final int DEFAULT_CANVAS_WIDTH = 20;

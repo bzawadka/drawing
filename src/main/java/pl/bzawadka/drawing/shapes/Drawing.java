@@ -1,4 +1,4 @@
-package pl.bzawadka.drawing;
+package pl.bzawadka.drawing.shapes;
 
 import java.util.Set;
 

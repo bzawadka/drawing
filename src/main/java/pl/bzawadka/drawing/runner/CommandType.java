@@ -1,4 +1,4 @@
-package pl.bzawadka.drawing;
+package pl.bzawadka.drawing.runner;
 
 public enum CommandType {
     CREATE_CANVAS('C'),

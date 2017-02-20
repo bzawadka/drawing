@@ -2,6 +2,7 @@ package pl.bzawadka.drawing;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
+import pl.bzawadka.drawing.shapes.Drawing;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,9 +12,9 @@ import java.net.URL;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.StrictAssertions.assertThatThrownBy;
 import static pl.bzawadka.drawing.Canvas.canvas;
-import static pl.bzawadka.drawing.Line.line;
-import static pl.bzawadka.drawing.Point.point;
-import static pl.bzawadka.drawing.Rectangle.rectangle;
+import static pl.bzawadka.drawing.shapes.Line.line;
+import static pl.bzawadka.drawing.shapes.Point.point;
+import static pl.bzawadka.drawing.shapes.Rectangle.rectangle;
 
 public class CanvasTest {
 

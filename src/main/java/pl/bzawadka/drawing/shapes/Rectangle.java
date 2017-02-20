@@ -1,4 +1,4 @@
-package pl.bzawadka.drawing;
+package pl.bzawadka.drawing.shapes;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
@@ -7,7 +7,7 @@ import org.apache.commons.lang3.Validate;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static pl.bzawadka.drawing.Line.line;
+import static pl.bzawadka.drawing.shapes.Line.line;
 
 public class Rectangle implements Drawing {
     private static final char CHARACTER = 'x';
