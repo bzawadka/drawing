@@ -11,22 +11,26 @@ import java.util.Set;
 
 import static pl.bzawadka.drawing.runner.CommandType.DRAW_LINE;
 import static pl.bzawadka.drawing.runner.CommandType.DRAW_RECTANGLE;
+import static pl.bzawadka.drawing.shapes.Line.line;
+import static pl.bzawadka.drawing.shapes.Rectangle.rectangle;
 
 public class DrawingFactory {
     private static final Set<CommandType> supportedCommands = ImmutableSet.of(DRAW_LINE, DRAW_RECTANGLE);
 
-    public static Drawing createInstance(Command command) {
+    public static Drawing newDrawing(Command command) {
         CommandType type = command.commandType;
         Validate.isTrue(supportedCommands.contains(type), "Unsupported Command: " + type);
         List<Integer> args = command.parameters;
 
         switch (type) {
             case DRAW_LINE:
-                return new Line(args.get(0), args.get(1), args.get(2), args.get(3));
+                return line(args.get(0), args.get(1), args.get(2), args.get(3));
 
             case DRAW_RECTANGLE:
+                return rectangle(args.get(0), args.get(1), args.get(2), args.get(3));
+
             default:
-                throw new NotImplementedException("wait for Rectangle class"); // TODO implement
+                throw new NotImplementedException("Type not supported: " + type);
         }
     }
 }

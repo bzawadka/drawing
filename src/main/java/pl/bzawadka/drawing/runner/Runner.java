@@ -1,7 +1,7 @@
 package pl.bzawadka.drawing.runner;
 
 import pl.bzawadka.drawing.Canvas;
-import pl.bzawadka.drawing.shapes.Drawing;
+import pl.bzawadka.drawing.shapes.DrawingFactory;
 import pl.bzawadka.drawing.shapes.Point;
 
 import java.io.InputStream;
@@ -11,9 +11,7 @@ import java.util.Scanner;
 
 import static java.util.Objects.requireNonNull;
 import static pl.bzawadka.drawing.runner.CommandType.QUIT;
-import static pl.bzawadka.drawing.shapes.Line.line;
 import static pl.bzawadka.drawing.shapes.Point.point;
-import static pl.bzawadka.drawing.shapes.Rectangle.rectangle;
 
 public class Runner {
     private static final int DEFAULT_CANVAS_WIDTH = 20;
@@ -45,12 +43,8 @@ public class Runner {
                     canvas = Canvas.canvas(args.get(0), args.get(1));
                     break;
                 case DRAW_LINE:
-                    Drawing line = line(args.get(0), args.get(1), args.get(2), args.get(3));
-                    canvas.place(line);
-                    break;
                 case DRAW_RECTANGLE:
-                    Drawing rectangle = rectangle(args.get(0), args.get(1), args.get(2), args.get(3));
-                    canvas.place(rectangle);
+                    canvas.place(DrawingFactory.newDrawing(command));
                     break;
                 case BUCKET_FILL:
                     Point startingPoint = point(args.get(0), args.get(1));
