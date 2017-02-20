@@ -2,6 +2,8 @@ package pl.bzawadka.drawing;
 
 import org.junit.Test;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.StrictAssertions.assertThatThrownBy;
 import static pl.bzawadka.drawing.CommandAssert.assertThat;
 import static pl.bzawadka.drawing.CommandType.*;
@@ -38,6 +40,12 @@ public class CommandTest {
         assertThat(command).hasKey('R');
         assertThat(command).hasCommandType(DRAW_RECTANGLE);
         assertThat(command).hasOnlyParameters(14, 1, 18, 3);
+
+        command = Command.parse("B 10 3 o");
+        assertThat(command).hasKey('B');
+        assertThat(command).hasCommandType(BUCKET_FILL);
+        assertThat(command).hasOnlyParameters(10, 3);
+        assertThat(command).hasCharacter(Optional.of('o'));
     }
 
 }

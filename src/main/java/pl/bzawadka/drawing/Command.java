@@ -14,8 +14,10 @@ import java.util.stream.Stream;
 import static pl.bzawadka.drawing.CommandType.QUIT;
 
 public class Command {
-    private static final String COMMAND_KEY_GROUP_NAME = "commandKey";
-    private static Pattern COMMAND_PATTERN = Pattern.compile("(?<commandKey>[CLRB])[\\s\\d]*");
+    private static final Pattern COMMAND_PATTERN = Pattern.compile("(?<commandKey>[CLRB])(?<numbers>[\\s\\d]*)(?<character>[a-z])?");
+    private static final String GROUP_NAME_COMMAND_KEY = "commandKey";
+    private static final String GROUP_NAME_NUMBERS = "numbers";
+    private static final String GROUP_NAME_CHARACTER = "character";
 
     public final CommandType commandType;
     public final char key;
@@ -36,13 +38,24 @@ public class Command {
     private static Command parametrizedCommand(String src) {
         Matcher matcher = COMMAND_PATTERN.matcher(src);
         Validate.isTrue(matcher.matches(), "Expected format of command is character followed by digits, separated by spaces, e.g. C 20 4");
-        char key = matcher.group(COMMAND_KEY_GROUP_NAME).charAt(0);
-        return new Command(key, Optional.empty(), collectParameters(matcher));
+        return new Command(collectKey(matcher), collectCharacter(matcher), collectParameters(matcher));
+    }
+
+    private static char collectKey(Matcher matcher) {
+        return matcher.group(GROUP_NAME_COMMAND_KEY).charAt(0);
+    }
+
+    private static Optional<Character> collectCharacter(Matcher matcher) {
+        String optionalGroup = matcher.group(GROUP_NAME_CHARACTER);
+        if (optionalGroup == null) {
+            return Optional.empty();
+        }
+        return Optional.of(optionalGroup.charAt(0));
     }
 
     private static List<Integer> collectParameters(Matcher matcher) {
-        String commandArgs = matcher.group(0).substring(1);
-        return Stream.of(commandArgs.split("\\s"))
+        String numbersGroup = matcher.group(GROUP_NAME_NUMBERS);
+        return Stream.of(numbersGroup.split("\\s"))
                 .filter(s -> !s.isEmpty())
                 .map(Integer::valueOf)
                 .collect(Collectors.toList());

@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import static java.util.Objects.requireNonNull;
 import static pl.bzawadka.drawing.Line.line;
+import static pl.bzawadka.drawing.Point.point;
 import static pl.bzawadka.drawing.Rectangle.rectangle;
 
 public class Runner {
@@ -46,6 +47,8 @@ public class Runner {
                     canvas.place(rectangle);
                     break;
                 case BUCKET_FILL:
+                    Point startingPoint = point(args.get(0), args.get(1));
+                    canvas.bucketFill(startingPoint, command.character.get());
                     break;
                 case QUIT:
                     System.out.println("actually, I could quit as command");
