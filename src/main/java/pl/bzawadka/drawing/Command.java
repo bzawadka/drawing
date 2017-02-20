@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 import static pl.bzawadka.drawing.CommandType.QUIT;
 
 public class Command {
-    private static final Pattern COMMAND_PATTERN = Pattern.compile("(?<commandKey>[CLRB])(?<numbers>[\\s\\d]*)(?<character>[a-z])?");
+    private static final Pattern COMMAND_PATTERN = Pattern.compile("(?<commandKey>[CLRBclrb])(?<numbers>[\\s\\d]*)(?<character>[a-z])?");
     private static final String GROUP_NAME_COMMAND_KEY = "commandKey";
     private static final String GROUP_NAME_NUMBERS = "numbers";
     private static final String GROUP_NAME_CHARACTER = "character";
@@ -42,7 +42,7 @@ public class Command {
     }
 
     private static char collectKey(Matcher matcher) {
-        return matcher.group(GROUP_NAME_COMMAND_KEY).charAt(0);
+        return matcher.group(GROUP_NAME_COMMAND_KEY).toUpperCase().charAt(0);
     }
 
     private static Optional<Character> collectCharacter(Matcher matcher) {

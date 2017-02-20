@@ -20,7 +20,7 @@ public class Canvas implements DrawableArea {
 
     private Map<Point, Character> paintedCharacters;
 
-    public Canvas(int width, int height) {
+    private Canvas(int width, int height) {
         Validate.isTrue(width > 0, "Width of the canvas must be greater than 0");
         Validate.isTrue(width <= 100, "Width of the canvas must be smaller or equal to 100");
         Validate.isTrue(height > 0, "Height of the canvas must be greater than 0");
@@ -28,6 +28,10 @@ public class Canvas implements DrawableArea {
         this.width = width;
         this.height = height;
         this.paintedCharacters = new HashMap<>();
+    }
+
+    public static Canvas canvas(int width, int height) {
+        return new Canvas(width, height);
     }
 
     @Override

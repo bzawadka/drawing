@@ -48,4 +48,11 @@ public class CommandTest {
         assertThat(command).hasCharacter(Optional.of('o'));
     }
 
+    @Test
+    public void lowerCaseCommandIsParsed() {
+        Command command = Command.parse("c 20 4");
+        assertThat(command).hasKey('C');
+        assertThat(command).hasCommandType(CREATE_CANVAS);
+    }
+
 }

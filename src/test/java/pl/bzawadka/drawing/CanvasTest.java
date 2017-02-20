@@ -10,6 +10,7 @@ import java.net.URL;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.StrictAssertions.assertThatThrownBy;
+import static pl.bzawadka.drawing.Canvas.canvas;
 import static pl.bzawadka.drawing.Line.line;
 import static pl.bzawadka.drawing.Point.point;
 import static pl.bzawadka.drawing.Rectangle.rectangle;
@@ -18,29 +19,29 @@ public class CanvasTest {
 
     @Test
     public void canvasSizeIsChecked() {
-        assertThatThrownBy(() -> new Canvas(-1, 1))
+        assertThatThrownBy(() -> canvas(-1, 1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Width of the canvas must be greater than 0");
-        assertThatThrownBy(() -> new Canvas(101, 1))
+        assertThatThrownBy(() -> canvas(101, 1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Width of the canvas must be smaller or equal to 100");
-        assertThatThrownBy(() -> new Canvas(1, -1))
+        assertThatThrownBy(() -> canvas(1, -1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Height of the canvas must be greater than 0");
-        assertThatThrownBy(() -> new Canvas(1, 101))
+        assertThatThrownBy(() -> canvas(1, 101))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Height of the canvas must be smaller or equal to 100");
     }
 
     @Test
     public void canvasOfCorrectSizeIsDrawn() {
-        assertThat(new Canvas(20, 4).draw()).isEqualTo(fileContent("canvas_20x4.txt"));
-        assertThat(new Canvas(6, 3).draw()).isEqualTo(fileContent("canvas_6x3.txt"));
+        assertThat(canvas(20, 4).draw()).isEqualTo(fileContent("canvas_20x4.txt"));
+        assertThat(canvas(6, 3).draw()).isEqualTo(fileContent("canvas_6x3.txt"));
     }
 
     @Test
     public void linesAndRectangleCanBeDrawnOnCanvas() {
-        Canvas canvas = new Canvas(20, 4);
+        Canvas canvas = canvas(20, 4);
 
         Drawing horizontalLine = line(1, 2, 6, 2);
         canvas.place(horizontalLine);
@@ -60,7 +61,7 @@ public class CanvasTest {
 
     @Test
     public void coloringRectangles() {
-        Canvas canvas = new Canvas(12, 4);
+        Canvas canvas = canvas(12, 4);
 
         Drawing rectangle = rectangle(2, 2, 5, 4);
         canvas.place(rectangle);
