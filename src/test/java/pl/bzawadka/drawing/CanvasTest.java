@@ -1,6 +1,7 @@
 package pl.bzawadka.drawing;
 
 import org.apache.commons.io.FileUtils;
+import org.assertj.core.api.StrictAssertions;
 import org.junit.Test;
 import pl.bzawadka.drawing.shapes.Drawing;
 
@@ -8,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.StrictAssertions.assertThatThrownBy;
@@ -41,7 +43,7 @@ public class CanvasTest {
     }
 
     @Test
-    public void linesAndRectangleCanBeDrawnOnCanvas() {
+    public void linesCanBeDrawnOnCanvas() {
         Canvas canvas = canvas(20, 4);
 
         Drawing horizontalLine = line(1, 2, 6, 2);
@@ -51,13 +53,23 @@ public class CanvasTest {
         Drawing verticalLine = line(6, 3, 6, 4);
         canvas.place(verticalLine);
         assertThat(canvas.draw()).isEqualTo(fileContent("canvas_20x4_with_2lines.txt"));
+    }
 
+    @Test
+    public void rectangleCanBeDrawnOnCanvas() {
+        Canvas canvas = canvas(20, 4);
         Drawing rectangle = rectangle(14, 1, 18, 3);
         canvas.place(rectangle);
-        assertThat(canvas.draw()).isEqualTo(fileContent("canvas_20x4_with_2lines_rectangle.txt"));
+        assertThat(canvas.draw()).isEqualTo(fileContent("canvas_20x4_with_rectangle.txt"));
+    }
 
+    @Test
+    public void rectangleCanBeFilledOnCanvas() {
+        Canvas canvas = canvas(20, 4);
+        Stream.of(line(1, 2, 6, 2), line(6, 3, 6, 4), rectangle(14, 1, 18, 3))
+                .forEach(drawing -> canvas.place(drawing));
         canvas.bucketFill(point(10, 3), 'o');
-        assertThat(canvas.draw()).isEqualTo(fileContent("canvas_20x4_with_2lines_rectangle_filled.txt"));
+        assertThat(canvas.draw()).isEqualTo(fileContent("canvas_20x4_with_rectangle_filled.txt"));
     }
 
     @Test
