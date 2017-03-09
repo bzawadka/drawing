@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/bzawadka/drawing.png?branch=master)](https://travis-ci.org/bzawadka/drawing)
+[![Build Status](https://travis-ci.org/bzawadka/drawing.svg?branch=master)](https://travis-ci.org/bzawadka/drawing)
 [![codecov.io](https://codecov.io/github/bzawadka/drawing/coverage.svg?branch=master)](https://codecov.io/github/bzawadka/drawing?branch=master)
 
 # drawing
