@@ -2,8 +2,8 @@ package pl.bzawadka.drawing.shapes;
 
 import org.junit.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.StrictAssertions.assertThatThrownBy;
-import static pl.bzawadka.drawing.shapes.LineAssert.assertThat;
 import static pl.bzawadka.drawing.shapes.Line.line;
 import static pl.bzawadka.drawing.shapes.Point.point;
 
@@ -23,15 +23,17 @@ public class LineTest {
 
     @Test
     public void pointsAreCalculatedForHorizontalLine() {
-        assertThat(line(1, 2, 6, 2))
-                .hasCharacter('x')
-                .hasOnlyPoints(point(1, 2), point(2, 2), point(3, 2), point(4, 2), point(5, 2), point(6, 2));
+        Line line = line(1, 2, 6, 2);
+        assertThat(line.getCharacter()).isEqualTo('x');
+        assertThat(line.getPoints())
+                .containsOnly(point(1, 2), point(2, 2), point(3, 2), point(4, 2), point(5, 2), point(6, 2));
     }
 
     @Test
     public void pointsAreCalculatedForVerticalLine() {
-        assertThat(line(6, 2, 6, 4))
-                .hasCharacter('x')
-                .hasOnlyPoints(point(6, 2), point(6, 3), point(6, 4));
+        Line line = line(6, 2, 6, 4);
+        assertThat(line.getCharacter()).isEqualTo('x');
+        assertThat(line.getPoints())
+                .containsOnly(point(6, 2), point(6, 3), point(6, 4));
     }
 }

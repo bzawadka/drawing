@@ -17,25 +17,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.assertj</groupId>
-                <artifactId>assertj-assertions-generator-maven-plugin</artifactId>
-                <version>2.0.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate-assertions</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <packages>
-                        <param>pl.bzawadka.drawing</param>
-                        <param>pl.bzawadka.drawing.shapes</param>
-                        <param>pl.bzawadka.drawing.runner</param>
-                    </packages>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.4.201502262128</version>

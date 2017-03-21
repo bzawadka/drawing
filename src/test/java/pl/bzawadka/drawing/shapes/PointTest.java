@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.HashSet;
 import java.util.Set;
 
-import static pl.bzawadka.drawing.shapes.PointAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static pl.bzawadka.drawing.shapes.Point.point;
 
 public class PointTest {
@@ -14,8 +14,8 @@ public class PointTest {
     @Test
     public void pointFieldsAreSet() {
         Point point = point(-1, 2);
-        assertThat(point).hasX(-1);
-        assertThat(point).hasY(2);
+        assertThat(point.x).isEqualTo(-1);
+        assertThat(point.y).isEqualTo(2);
     }
 
     @Test
@@ -33,7 +33,7 @@ public class PointTest {
     @Test
     public void neighboursAreCalculated() {
         Point point = point(3, 2);
-        assertThat(point).hasOnlyNeighbours(
+        assertThat(point.getNeighbours()).containsOnly(
                 point(2, 1), point(3, 1), point(4, 1),
                 point(2, 2), point(4, 2),
                 point(2, 3), point(3, 3), point(4, 3));
