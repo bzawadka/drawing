@@ -8,6 +8,6 @@ public class CommandFactory {
         if ("q".equalsIgnoreCase(input))
             return new QuitCommand(canvas);
 
-        throw new IllegalArgumentException("unrecognized command: " + input);
+        return null; //throw new IllegalArgumentException("unrecognized command: " + input);
     }
 }

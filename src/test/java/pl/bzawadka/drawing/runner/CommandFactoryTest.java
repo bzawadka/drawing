@@ -1,5 +1,6 @@
 package pl.bzawadka.drawing.runner;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,9 +20,17 @@ public class CommandFactoryTest {
         assertThat(command).isInstanceOf(QuitCommand.class);
     }
 
+    @Ignore
     @Test
     public void unrecognizedCommandWillThrowAnException() {
         assertThatThrownBy(() -> CommandFactory.parse("z", canvas(10, 10)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    public void unrecognizedCommandWillReturnNull() {
+        Command command = CommandFactory.parse("a", canvas(10, 10));
+        assertThat(command).isNull();
+    }
+
 }

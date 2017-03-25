@@ -32,31 +32,37 @@ public class Runner {
 
     public void run() {
         Scanner scanner = new Scanner(in);
-        SimpleCommand command;
+        SimpleCommand simpleCommand;
+        Command command;
         do {
             out.print("enter command: ");
-            command = SimpleCommand.parse(scanner.nextLine());
-            List<Integer> args = command.parameters;
+            String line = scanner.nextLine();
+            command = CommandFactory.parse(line, canvas);
+            if (command != null) {
+                command.execute();
+            } else{
+                simpleCommand = SimpleCommand.parse(line);
+                List<Integer> args = simpleCommand.parameters;
 
-            switch (command.commandType) {
-                case CREATE_CANVAS:
-                    canvas = Canvas.canvas(args.get(0), args.get(1));
-                    break;
-                case DRAW_LINE:
-                case DRAW_RECTANGLE:
-                    canvas.place(DrawingFactory.newDrawing(command));
-                    break;
-                case BUCKET_FILL:
-                    Point startingPoint = point(args.get(0), args.get(1));
-                    canvas.bucketFill(startingPoint, command.character.get());
-                    break;
-                case QUIT:
-                    break;
+                switch (simpleCommand.commandType) {
+                    case CREATE_CANVAS:
+                        canvas = Canvas.canvas(args.get(0), args.get(1));
+                        break;
+                    case DRAW_LINE:
+                    case DRAW_RECTANGLE:
+                        canvas.place(DrawingFactory.newDrawing(simpleCommand));
+                        break;
+                    case BUCKET_FILL:
+                        Point startingPoint = point(args.get(0), args.get(1));
+                        canvas.bucketFill(startingPoint, simpleCommand.character.get());
+                        break;
+                    case QUIT:
+                        break;
+                }
             }
-
             out.println(canvas.draw());
 
-        } while (command.commandType != QUIT);
+        } while (!canvas.isComplete());
         scanner.close();
     }
 
