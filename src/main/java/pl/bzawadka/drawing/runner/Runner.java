@@ -48,9 +48,6 @@ public class Runner {
                     case CREATE_CANVAS:
                         canvas = Canvas.canvas(args.get(0), args.get(1));
                         break;
-                    case DRAW_RECTANGLE:
-                        canvas.place(DrawingFactory.newDrawing(simpleCommand));
-                        break;
                     case BUCKET_FILL:
                         Point startingPoint = point(args.get(0), args.get(1));
                         canvas.bucketFill(startingPoint, simpleCommand.character.get());

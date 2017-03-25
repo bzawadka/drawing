@@ -18,7 +18,7 @@ public class DrawLineCommandTest {
     }
 
     @Test
-    public void linesCanBeDrawnOnCanvas() {
+    public void executeDrawsLineOnCanvas() {
         Canvas canvas = canvas(20, 4);
         DrawLineCommand command = new DrawLineCommand(canvas, ImmutableList.of(1, 2, 6, 2));
         command.execute();

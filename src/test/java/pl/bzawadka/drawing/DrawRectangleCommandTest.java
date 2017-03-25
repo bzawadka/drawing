@@ -18,7 +18,7 @@ public class DrawRectangleCommandTest {
     }
 
     @Test
-    public void rectangleCanBeDrawnOnCanvas() {
+    public void executeDrawsRectangleOnCanvas() {
         Canvas canvas = canvas(20, 4);
         DrawRectangleCommand command = new DrawRectangleCommand(canvas, ImmutableList.of(14, 1, 18, 3));
         command.execute();
