@@ -21,14 +21,14 @@ public class CanvasTest {
 
     @Test
     public void canvasIsInstantiatedAsNotTerminal() {
-        assertThat(canvas(10, 10).isDrawingComplete).isFalse();
+        assertThat(canvas(10, 10).isComplete()).isFalse();
     }
 
     @Test
     public void canvasCanBeMarkedAsCompleted() {
         Canvas canvas = canvas(10, 10);
         canvas.complete();
-        assertThat(canvas.isDrawingComplete).isTrue();
+        assertThat(canvas.isComplete()).isTrue();
     }
 
     @Test

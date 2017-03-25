@@ -19,10 +19,8 @@ public class Canvas implements DrawableArea {
 
     private final int width;
     private final int height;
-
+    private boolean isDrawingComplete;
     private Map<Point, Character> paintedCharacters;
-
-    public boolean isDrawingComplete;
 
     private Canvas(int width, int height) {
         Validate.isTrue(width > 0, "Width of the canvas must be greater than 0");
@@ -111,5 +109,9 @@ public class Canvas implements DrawableArea {
 
     public void complete() {
         this.isDrawingComplete = true;
+    }
+
+    public boolean isComplete() {
+        return isDrawingComplete;
     }
 }
