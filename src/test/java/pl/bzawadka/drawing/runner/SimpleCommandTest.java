@@ -6,7 +6,8 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.StrictAssertions.assertThatThrownBy;
-import static pl.bzawadka.drawing.runner.CommandType.*;
+import static pl.bzawadka.drawing.command.CommandType.BUCKET_FILL;
+import static pl.bzawadka.drawing.command.CommandType.CREATE_CANVAS;
 
 public class SimpleCommandTest {
 

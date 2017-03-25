@@ -1,13 +1,13 @@
-package pl.bzawadka.drawing;
+package pl.bzawadka.drawing.command;
 
 import com.google.common.collect.ImmutableList;
 import org.junit.Test;
-import pl.bzawadka.drawing.runner.DrawLineCommand;
+import pl.bzawadka.drawing.Canvas;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static pl.bzawadka.drawing.Canvas.canvas;
 import static pl.bzawadka.drawing.FileUtils.fileContent;
-import static pl.bzawadka.drawing.runner.CommandType.DRAW_LINE;
+import static pl.bzawadka.drawing.command.CommandType.DRAW_LINE;
 
 public class DrawLineCommandTest {
 

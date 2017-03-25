@@ -1,8 +1,8 @@
 package pl.bzawadka.drawing.runner;
 
-import com.google.common.collect.ImmutableList;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import pl.bzawadka.drawing.command.CommandType;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,8 +10,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static pl.bzawadka.drawing.runner.CommandType.QUIT;
 
 public class SimpleCommand {
     private static final Pattern COMMAND_PATTERN = Pattern.compile("(?<commandKey>[CLRBclrb])(?<numbers>[\\s\\d]*)(?<character>[a-z])?");

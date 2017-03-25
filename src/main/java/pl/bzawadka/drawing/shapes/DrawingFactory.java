@@ -3,14 +3,14 @@ package pl.bzawadka.drawing.shapes;
 import com.google.common.collect.ImmutableSet;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.Validate;
+import pl.bzawadka.drawing.command.CommandType;
 import pl.bzawadka.drawing.runner.SimpleCommand;
-import pl.bzawadka.drawing.runner.CommandType;
 
 import java.util.List;
 import java.util.Set;
 
-import static pl.bzawadka.drawing.runner.CommandType.DRAW_LINE;
-import static pl.bzawadka.drawing.runner.CommandType.DRAW_RECTANGLE;
+import static pl.bzawadka.drawing.command.CommandType.DRAW_LINE;
+import static pl.bzawadka.drawing.command.CommandType.DRAW_RECTANGLE;
 import static pl.bzawadka.drawing.shapes.Line.line;
 import static pl.bzawadka.drawing.shapes.Rectangle.rectangle;
 

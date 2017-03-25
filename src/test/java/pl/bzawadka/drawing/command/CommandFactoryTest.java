@@ -1,4 +1,4 @@
-package pl.bzawadka.drawing.runner;
+package pl.bzawadka.drawing.command;
 
 import org.junit.Ignore;
 import org.junit.Test;

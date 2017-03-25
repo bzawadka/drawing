@@ -1,7 +1,8 @@
 package pl.bzawadka.drawing.runner;
 
 import pl.bzawadka.drawing.Canvas;
-import pl.bzawadka.drawing.shapes.DrawingFactory;
+import pl.bzawadka.drawing.command.Command;
+import pl.bzawadka.drawing.command.CommandFactory;
 import pl.bzawadka.drawing.shapes.Point;
 
 import java.io.InputStream;
@@ -10,7 +11,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import static java.util.Objects.requireNonNull;
-import static pl.bzawadka.drawing.runner.CommandType.QUIT;
 import static pl.bzawadka.drawing.shapes.Point.point;
 
 public class Runner {

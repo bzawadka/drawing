@@ -1,4 +1,4 @@
-package pl.bzawadka.drawing.runner;
+package pl.bzawadka.drawing.command;
 
 import org.apache.commons.lang3.Validate;
 import pl.bzawadka.drawing.Canvas;
@@ -9,8 +9,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static pl.bzawadka.drawing.runner.CommandType.QUIT;
-
 public class CommandFactory {
     private static final Pattern COMMAND_PATTERN = Pattern.compile("(?<commandKey>[CLRBclrb])(?<numbers>[\\s\\d]*)(?<character>[a-z])?");
     private static final String GROUP_NAME_COMMAND_KEY = "commandKey";
@@ -18,7 +16,7 @@ public class CommandFactory {
     private static final String GROUP_NAME_CHARACTER = "character";
 
     public static Command parse(String input, Canvas canvas) {
-        if (QUIT.getCode().toString().equalsIgnoreCase(input))
+        if (CommandType.QUIT.getCode().toString().equalsIgnoreCase(input))
             return new QuitCommand(canvas);
 
         if (input.startsWith("l") || input.startsWith("L")) {

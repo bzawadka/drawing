@@ -1,11 +1,11 @@
-package pl.bzawadka.drawing.runner;
+package pl.bzawadka.drawing.command;
 
 import org.junit.Test;
 import pl.bzawadka.drawing.Canvas;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static pl.bzawadka.drawing.Canvas.canvas;
-import static pl.bzawadka.drawing.runner.CommandType.QUIT;
+import static pl.bzawadka.drawing.command.CommandType.QUIT;
 
 public class QuitCommandTest {
 
