@@ -1,7 +1,6 @@
 package pl.bzawadka.drawing;
 
 import org.apache.commons.io.FileUtils;
-import org.assertj.core.api.StrictAssertions;
 import org.junit.Test;
 import pl.bzawadka.drawing.shapes.Drawing;
 
@@ -19,6 +18,18 @@ import static pl.bzawadka.drawing.shapes.Point.point;
 import static pl.bzawadka.drawing.shapes.Rectangle.rectangle;
 
 public class CanvasTest {
+
+    @Test
+    public void canvasIsInstantiatedAsNotTerminal() {
+        assertThat(canvas(10, 10).isDrawingComplete).isFalse();
+    }
+
+    @Test
+    public void canvasCanBeMarkedAsCompleted() {
+        Canvas canvas = canvas(10, 10);
+        canvas.complete();
+        assertThat(canvas.isDrawingComplete).isTrue();
+    }
 
     @Test
     public void canvasSizeIsChecked() {
