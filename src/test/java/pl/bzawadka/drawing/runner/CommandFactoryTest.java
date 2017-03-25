@@ -28,6 +28,14 @@ public class CommandFactoryTest {
         assertThat(((DrawLineCommand)command).parameters).containsOnly(1, 2, 6, 2);
     }
 
+    @Test
+    public void drawRectangleCommandCanBeParsed() {
+        Command command = CommandFactory.parse("R 14 1 18 3", canvas(20, 20));
+        assertThat(command).isNotNull();
+        assertThat(command).isInstanceOf(DrawRectangleCommand.class);
+        assertThat(((DrawRectangleCommand)command).parameters).containsOnly(14, 1, 18, 3);
+    }
+
     @Ignore
     @Test
     public void unrecognizedCommandWillThrowAnException() {

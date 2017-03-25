@@ -22,16 +22,19 @@ public class CommandFactory {
             return new QuitCommand(canvas);
 
         if (input.startsWith("l") || input.startsWith("L")) {
-            Matcher matcher = COMMAND_PATTERN.matcher(input);
-            Validate.isTrue(matcher.matches(), "Expected format of command is character followed by digits, separated by spaces, e.g. C 20 4");
-            List<Integer> parameters = collectParameters(matcher);
-            return new DrawLineCommand(canvas, parameters);
+            return new DrawLineCommand(canvas, collectParameters(input));
+        }
+
+        if (input.startsWith("r") || input.startsWith("R")) {
+            return new DrawRectangleCommand(canvas, collectParameters(input));
         }
 
         return null; //throw new IllegalArgumentException("unrecognized command: " + input);
     }
 
-    private static List<Integer> collectParameters(Matcher matcher) {
+    private static List<Integer> collectParameters(String input) {
+        Matcher matcher = COMMAND_PATTERN.matcher(input);
+        Validate.isTrue(matcher.matches(), "Expected format of command is character followed by digits, separated by spaces, e.g. C 20 4");
         String numbersGroup = matcher.group(GROUP_NAME_NUMBERS);
         return Stream.of(numbersGroup.split("\\s"))
                 .filter(s -> !s.isEmpty())
