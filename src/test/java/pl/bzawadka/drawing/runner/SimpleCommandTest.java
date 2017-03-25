@@ -27,10 +27,6 @@ public class SimpleCommandTest {
         assertThat(command.commandType).isEqualTo(CREATE_CANVAS);
         assertThat(command.parameters).containsOnly(20, 4);
 
-        command = SimpleCommand.parse("Q");
-        assertThat(command.key).isEqualTo('Q');
-        assertThat(command.commandType).isEqualTo(QUIT);
-
         command = SimpleCommand.parse("L 1 2 6 2");
         assertThat(command.key).isEqualTo('L');
         assertThat(command.commandType).isEqualTo(DRAW_LINE);

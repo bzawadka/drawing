@@ -32,7 +32,7 @@ public class SimpleCommand {
     }
 
     public static SimpleCommand parse(String src) {
-        return isQuitCommand(src) ? quitCommand() : parametrizedCommand(src);
+        return parametrizedCommand(src);
     }
 
     private static SimpleCommand parametrizedCommand(String src) {
@@ -59,14 +59,6 @@ public class SimpleCommand {
                 .filter(s -> !s.isEmpty())
                 .map(Integer::valueOf)
                 .collect(Collectors.toList());
-    }
-
-    private static boolean isQuitCommand(String src) {
-        return QUIT.getCode().toString().equalsIgnoreCase(src);
-    }
-
-    private static SimpleCommand quitCommand() {
-        return new SimpleCommand(QUIT.getCode().charValue(), Optional.empty(), ImmutableList.of());
     }
 
     @Override
