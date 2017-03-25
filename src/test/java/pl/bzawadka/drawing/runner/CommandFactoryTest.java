@@ -20,6 +20,14 @@ public class CommandFactoryTest {
         assertThat(command).isInstanceOf(QuitCommand.class);
     }
 
+    @Test
+    public void drawLineCommandCanBeParsed() {
+        Command command = CommandFactory.parse("L 1 2 6 2", canvas(10, 10));
+        assertThat(command).isNotNull();
+        assertThat(command).isInstanceOf(DrawLineCommand.class);
+        assertThat(((DrawLineCommand)command).parameters).containsOnly(1, 2, 6, 2);
+    }
+
     @Ignore
     @Test
     public void unrecognizedCommandWillThrowAnException() {

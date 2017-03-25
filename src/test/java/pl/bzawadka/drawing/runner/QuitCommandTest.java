@@ -16,7 +16,7 @@ public class QuitCommandTest {
     }
 
     @Test
-    public void quitCommandExecutionFurnsCanvasIntoTerminalState() {
+    public void quitCommandExecutionTurnsCanvasIntoTerminalState() {
         Canvas canvas = canvas(10, 10);
         QuitCommand command = new QuitCommand(canvas);
         assertThat(canvas.isComplete()).isFalse();
