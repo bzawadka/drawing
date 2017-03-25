@@ -32,10 +32,10 @@ public class Runner {
 
     public void run() {
         Scanner scanner = new Scanner(in);
-        Command command;
+        SimpleCommand command;
         do {
             out.print("enter command: ");
-            command = Command.parse(scanner.nextLine());
+            command = SimpleCommand.parse(scanner.nextLine());
             List<Integer> args = command.parameters;
 
             switch (command.commandType) {

@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 import static pl.bzawadka.drawing.runner.CommandType.QUIT;
 
-public class Command {
+public class SimpleCommand {
     private static final Pattern COMMAND_PATTERN = Pattern.compile("(?<commandKey>[CLRBclrb])(?<numbers>[\\s\\d]*)(?<character>[a-z])?");
     private static final String GROUP_NAME_COMMAND_KEY = "commandKey";
     private static final String GROUP_NAME_NUMBERS = "numbers";
@@ -24,21 +24,21 @@ public class Command {
     public final Optional<Character> character;
     public final List<Integer> parameters;
 
-    public Command(char key, Optional<Character> character, List<Integer> parameters) {
+    public SimpleCommand(char key, Optional<Character> character, List<Integer> parameters) {
         this.key = key;
         this.commandType = CommandType.parseFrom(key);
         this.character = character;
         this.parameters = parameters;
     }
 
-    public static Command parse(String src) {
+    public static SimpleCommand parse(String src) {
         return isQuitCommand(src) ? quitCommand() : parametrizedCommand(src);
     }
 
-    private static Command parametrizedCommand(String src) {
+    private static SimpleCommand parametrizedCommand(String src) {
         Matcher matcher = COMMAND_PATTERN.matcher(src);
         Validate.isTrue(matcher.matches(), "Expected format of command is character followed by digits, separated by spaces, e.g. C 20 4");
-        return new Command(collectKey(matcher), collectCharacter(matcher), collectParameters(matcher));
+        return new SimpleCommand(collectKey(matcher), collectCharacter(matcher), collectParameters(matcher));
     }
 
     private static char collectKey(Matcher matcher) {
@@ -65,8 +65,8 @@ public class Command {
         return QUIT.getCode().toString().equalsIgnoreCase(src);
     }
 
-    private static Command quitCommand() {
-        return new Command(QUIT.getCode().charValue(), Optional.empty(), ImmutableList.of());
+    private static SimpleCommand quitCommand() {
+        return new SimpleCommand(QUIT.getCode().charValue(), Optional.empty(), ImmutableList.of());
     }
 
     @Override

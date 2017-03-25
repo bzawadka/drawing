@@ -1,7 +1,7 @@
 package pl.bzawadka.drawing.shapes;
 
 import org.junit.Test;
-import pl.bzawadka.drawing.runner.Command;
+import pl.bzawadka.drawing.runner.SimpleCommand;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.StrictAssertions.assertThatThrownBy;
@@ -11,7 +11,7 @@ public class DrawingFactoryTest {
 
     @Test
     public void onlySelectedCommandsAreDrawings() {
-        Command unsupportedCommand = Command.parse("C 20 4");
+        SimpleCommand unsupportedCommand = SimpleCommand.parse("C 20 4");
         assertThatThrownBy(() -> DrawingFactory.newDrawing(unsupportedCommand))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Unsupported Command: CREATE_CANVAS");
@@ -19,12 +19,12 @@ public class DrawingFactoryTest {
 
     @Test
     public void lineIsParsedFromCommand() {
-        Command command1 = Command.parse("L 1 2 3 2");
+        SimpleCommand command1 = SimpleCommand.parse("L 1 2 3 2");
         Drawing horizontalLine = DrawingFactory.newDrawing(command1);
         assertThat(horizontalLine).isExactlyInstanceOf(Line.class);
         assertThat(horizontalLine.getPoints()).containsOnly(point(1, 2), point(2, 2), point(3, 2));
 
-        Command command2 = Command.parse("L 4 1 4 3");
+        SimpleCommand command2 = SimpleCommand.parse("L 4 1 4 3");
         Drawing verticalLine = DrawingFactory.newDrawing(command2);
         assertThat(verticalLine).isExactlyInstanceOf(Line.class);
         assertThat(verticalLine.getPoints()).containsOnly(point(4, 1), point(4, 2), point(4, 3));
@@ -32,7 +32,7 @@ public class DrawingFactoryTest {
 
     @Test
     public void rectangleIsParsedFromCommand() {
-        Command command = Command.parse("R 14 1 18 3");
+        SimpleCommand command = SimpleCommand.parse("R 14 1 18 3");
         Drawing rectangle = DrawingFactory.newDrawing(command);
         assertThat(rectangle).isExactlyInstanceOf(Rectangle.class);
         assertThat(rectangle.getPoints())
