@@ -48,7 +48,6 @@ public class Runner {
                     case CREATE_CANVAS:
                         canvas = Canvas.canvas(args.get(0), args.get(1));
                         break;
-                    case DRAW_LINE:
                     case DRAW_RECTANGLE:
                         canvas.place(DrawingFactory.newDrawing(simpleCommand));
                         break;
