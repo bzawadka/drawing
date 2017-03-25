@@ -15,6 +15,7 @@ public class DrawRectangleCommandTest {
     public void drawRectangleCommandCanBeInstantiated() throws Exception {
         DrawRectangleCommand command = new DrawRectangleCommand(canvas(20, 4), ImmutableList.of(14, 1, 18, 3));
         assertThat(command.commandType).isEqualTo(DRAW_RECTANGLE);
+        assertThat(command.parameters).containsOnly(14, 1, 18, 3);
     }
 
     @Test

@@ -1,8 +1,8 @@
 package pl.bzawadka.drawing.runner;
 
 import pl.bzawadka.drawing.Canvas;
+import pl.bzawadka.drawing.CommandFactory;
 import pl.bzawadka.drawing.command.Command;
-import pl.bzawadka.drawing.command.CommandFactory;
 import pl.bzawadka.drawing.shapes.Point;
 
 import java.io.InputStream;

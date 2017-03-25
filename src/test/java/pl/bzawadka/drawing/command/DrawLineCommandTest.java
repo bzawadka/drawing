@@ -15,6 +15,7 @@ public class DrawLineCommandTest {
     public void drawLineCommandCanBeInstantiated() throws Exception {
         DrawLineCommand command = new DrawLineCommand(canvas(10, 10), ImmutableList.of(1, 2, 6, 2));
         assertThat(command.commandType).isEqualTo(DRAW_LINE);
+        assertThat(command.parameters).containsOnly(1, 2, 6, 2);
     }
 
     @Test

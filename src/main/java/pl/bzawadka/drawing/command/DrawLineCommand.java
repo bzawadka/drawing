@@ -10,9 +10,9 @@ import static pl.bzawadka.drawing.shapes.Line.line;
 public class DrawLineCommand implements Command {
 
     public static final CommandType commandType = CommandType.DRAW_LINE;
+    public List<Integer> parameters;
 
     private final Canvas canvas;
-    public List<Integer> parameters;
 
     public DrawLineCommand(Canvas canvas, List<Integer> lineCoordinates) {
         this.canvas = canvas;

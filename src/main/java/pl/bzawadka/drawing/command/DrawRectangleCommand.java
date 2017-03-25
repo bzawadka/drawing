@@ -10,9 +10,9 @@ import static pl.bzawadka.drawing.shapes.Rectangle.rectangle;
 public class DrawRectangleCommand implements Command {
 
     public static final CommandType commandType = CommandType.DRAW_RECTANGLE;
+    public List<Integer> parameters;
 
     private final Canvas canvas;
-    public List<Integer> parameters;
 
     public DrawRectangleCommand(Canvas canvas, List<Integer> lineCoordinates) {
         this.canvas = canvas;
