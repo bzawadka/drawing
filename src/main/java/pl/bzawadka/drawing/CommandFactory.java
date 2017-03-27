@@ -15,23 +15,27 @@ public class CommandFactory {
     private static final String GROUP_NAME_NUMBERS = "numbers";
     private static final String GROUP_NAME_CHARACTER = "character";
 
-    public static Command parse(String input, Canvas canvas) {
+    public static Command parse(String input, Invoker invoker) {
         if (CommandType.QUIT.getCode().toString().equalsIgnoreCase(input))
-            return new QuitCommand(canvas);
+            return new QuitCommand(invoker);
+
+        if (input.startsWith("c") || input.startsWith("C")) {
+            return new CreateCanvasCommand(invoker, collectParameters(input));
+        }
 
         if (input.startsWith("l") || input.startsWith("L")) {
-            return new DrawLineCommand(canvas, collectParameters(input));
+            return new DrawLineCommand(invoker, collectParameters(input));
         }
 
         if (input.startsWith("r") || input.startsWith("R")) {
-            return new DrawRectangleCommand(canvas, collectParameters(input));
+            return new DrawRectangleCommand(invoker, collectParameters(input));
         }
 
         if (input.startsWith("b") || input.startsWith("B")) {
-            return new BucketFillCommand(canvas, collectParameters(input), collectCharacter(input));
+            return new BucketFillCommand(invoker, collectParameters(input), collectCharacter(input));
         }
 
-        return null; //throw new IllegalArgumentException("unrecognized command: " + input);
+        throw new IllegalArgumentException("unrecognized command: " + input);
     }
 
     private static List<Integer> collectParameters(String input) {
@@ -47,7 +51,7 @@ public class CommandFactory {
         Matcher matcher = getMatcher(input);
         String group = matcher.group(GROUP_NAME_CHARACTER);
         if (group == null) {
-            throw new IllegalStateException("I'm puzzled, this should never happen (but it will)");
+            throw new IllegalStateException("character expected as part of command");
         }
         return group.charAt(0);
     }
