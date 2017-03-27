@@ -1,6 +1,5 @@
-package pl.bzawadka.drawing.runner;
+package pl.bzawadka.drawing;
 
-import pl.bzawadka.drawing.CommandFactory;
 import pl.bzawadka.drawing.command.Command;
 import pl.bzawadka.drawing.command.Invoker;
 
