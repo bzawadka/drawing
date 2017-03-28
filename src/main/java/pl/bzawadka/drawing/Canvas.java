@@ -17,23 +17,41 @@ public class Canvas implements DrawableArea {
     private static final char EMPTY_CHARACTER = ' ';
     private static final char LINE_SEPARATOR = '\n';
 
-    private final int width;
-    private final int height;
+    private Integer width;
+    private Integer height;
     private boolean isDrawingComplete;
     private Map<Point, Character> paintedCharacters;
 
     private Canvas(int width, int height) {
-        Validate.isTrue(width > 0, "Width of the canvas must be greater than 0");
-        Validate.isTrue(width <= 100, "Width of the canvas must be smaller or equal to 100");
-        Validate.isTrue(height > 0, "Height of the canvas must be greater than 0");
-        Validate.isTrue(height <= 100, "Height of the canvas must be smaller or equal to 100");
+        validateWidthAgainstHeight(width, height);
         this.width = width;
         this.height = height;
         this.paintedCharacters = new HashMap<>();
     }
 
+    private Canvas(){
+        this.paintedCharacters = new HashMap<>();
+    }
+
+    public void setSize(int width, int height) {
+        validateWidthAgainstHeight(width, height);
+        this.width = width;
+        this.height = height;
+    }
+
+    private void validateWidthAgainstHeight(int width, int height) {
+        Validate.isTrue(width > 0, "Width of the canvas must be greater than 0");
+        Validate.isTrue(width <= 100, "Width of the canvas must be smaller or equal to 100");
+        Validate.isTrue(height > 0, "Height of the canvas must be greater than 0");
+        Validate.isTrue(height <= 100, "Height of the canvas must be smaller or equal to 100");
+    }
+
     public static Canvas canvas(int width, int height) {
         return new Canvas(width, height);
+    }
+
+    public static Canvas canvas() {
+        return new Canvas();
     }
 
     @Override
@@ -114,4 +132,13 @@ public class Canvas implements DrawableArea {
     public boolean isComplete() {
         return isDrawingComplete;
     }
+
+    public Integer getHeight() {
+        return height;
+    }
+
+    public Integer getWidth() {
+        return width;
+    }
+
 }

@@ -32,6 +32,21 @@ public class CanvasTest {
     }
 
     @Test
+    public void canvasIsInitializedWithNoSize() {
+        Canvas canvas = canvas();
+        assertThat(canvas.getWidth()).isNull();
+        assertThat(canvas.getHeight()).isNull();
+    }
+
+    @Test
+    public void canvasSizeCanBeAmended() {
+        Canvas canvas = canvas();
+        canvas.setSize(20, 15);
+        assertThat(canvas.getWidth()).isEqualTo(20);
+        assertThat(canvas.getHeight()).isEqualTo(15);
+    }
+
+    @Test
     public void canvasSizeIsChecked() {
         assertThatThrownBy(() -> canvas(-1, 1))
                 .isInstanceOf(IllegalArgumentException.class)
