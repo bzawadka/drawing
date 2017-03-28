@@ -11,6 +11,7 @@ import java.util.Map;
 
 import static pl.bzawadka.drawing.shapes.Point.point;
 
+@Receiver
 public class Canvas implements DrawableArea {
     private static final char AXIS_X_CHARACTER = '-';
     private static final char AXIS_Y_CHARACTER = '|';

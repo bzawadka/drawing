@@ -15,24 +15,24 @@ public class CommandFactory {
     private static final String GROUP_NAME_NUMBERS = "numbers";
     private static final String GROUP_NAME_CHARACTER = "character";
 
-    public static Command parse(String input, Receiver receiver) {
+    public static Command parse(String input, Canvas canvas) {
         if (startsWithCommandCode(input, CommandType.QUIT))
-            return new QuitCommand(receiver);
+            return new QuitCommand(canvas);
 
         if (startsWithCommandCode(input, CommandType.CREATE_CANVAS)) {
-            return new CreateCanvasCommand(receiver, collectParameters(input));
+            return new CreateCanvasCommand(canvas, collectParameters(input));
         }
 
         if (startsWithCommandCode(input, CommandType.DRAW_LINE)) {
-            return new DrawLineCommand(receiver, collectParameters(input));
+            return new DrawLineCommand(canvas, collectParameters(input));
         }
 
         if (startsWithCommandCode(input, CommandType.DRAW_RECTANGLE)) {
-            return new DrawRectangleCommand(receiver, collectParameters(input));
+            return new DrawRectangleCommand(canvas, collectParameters(input));
         }
 
         if (startsWithCommandCode(input, CommandType.BUCKET_FILL)) {
-            return new BucketFillCommand(receiver, collectParameters(input), collectCharacter(input));
+            return new BucketFillCommand(canvas, collectParameters(input), collectCharacter(input));
         }
 
         throw new IllegalArgumentException("unrecognized command: " + input);
