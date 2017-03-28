@@ -1,7 +1,8 @@
-package pl.bzawadka.drawing;
+package pl.bzawadka.drawing.command;
 
 import org.apache.commons.lang3.Validate;
-import pl.bzawadka.drawing.command.*;
+import pl.bzawadka.drawing.Canvas;
+import pl.bzawadka.drawing.Command;
 
 import java.util.List;
 import java.util.regex.Matcher;

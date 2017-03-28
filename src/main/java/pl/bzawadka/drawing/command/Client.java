@@ -1,4 +1,6 @@
-package pl.bzawadka.drawing;
+package pl.bzawadka.drawing.command;
+
+import pl.bzawadka.drawing.Command;
 
 /**
  * Both an {@link Invoker} object and several {@link Command} objects are held by a {@link Client} object.

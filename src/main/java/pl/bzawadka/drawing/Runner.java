@@ -1,5 +1,9 @@
 package pl.bzawadka.drawing;
 
+import pl.bzawadka.drawing.command.Client;
+import pl.bzawadka.drawing.command.CommandFactory;
+import pl.bzawadka.drawing.command.Invoker;
+
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;

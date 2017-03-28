@@ -1,6 +1,7 @@
 package pl.bzawadka.drawing;
 
 import org.apache.commons.lang3.Validate;
+import pl.bzawadka.drawing.command.Receiver;
 import pl.bzawadka.drawing.shapes.Drawing;
 import pl.bzawadka.drawing.shapes.Point;
 

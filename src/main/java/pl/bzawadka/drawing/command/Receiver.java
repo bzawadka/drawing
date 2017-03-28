@@ -1,4 +1,6 @@
-package pl.bzawadka.drawing;
+package pl.bzawadka.drawing.command;
+
+import pl.bzawadka.drawing.Command;
 
 /**
  * A {@link Command} object knows about {@link Receiver} and invokes a method of the receiver.

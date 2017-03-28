@@ -1,7 +1,7 @@
-package pl.bzawadka.drawing;
+package pl.bzawadka.drawing.command;
 
 import org.junit.Test;
-import pl.bzawadka.drawing.command.*;
+import pl.bzawadka.drawing.Command;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.StrictAssertions.assertThatThrownBy;
