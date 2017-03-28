@@ -1,6 +1,5 @@
 package pl.bzawadka.drawing;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -26,7 +25,6 @@ public class RunnerTest {
     }
 
     @Test
-    @Ignore
     public void runnerTerminatesWhenTerminatingCharacterIsProvided() {
         String terminatingCharacter = "C 20 4\nQ\n";
         InputStream in = new ByteArrayInputStream(terminatingCharacter.getBytes());

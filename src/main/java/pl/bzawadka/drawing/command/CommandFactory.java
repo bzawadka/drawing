@@ -12,7 +12,6 @@ import java.util.stream.Stream;
 
 public class CommandFactory {
     private static final Pattern COMMAND_PATTERN = Pattern.compile("(?<commandKey>[CLRBclrb])(?<numbers>[\\s\\d]*)(?<character>[a-z])?");
-    private static final String GROUP_NAME_COMMAND_KEY = "commandKey";
     private static final String GROUP_NAME_NUMBERS = "numbers";
     private static final String GROUP_NAME_CHARACTER = "character";
 
