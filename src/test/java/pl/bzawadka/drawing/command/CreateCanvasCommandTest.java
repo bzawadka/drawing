@@ -2,6 +2,7 @@ package pl.bzawadka.drawing.command;
 
 import com.google.common.collect.ImmutableList;
 import org.junit.Test;
+import pl.bzawadka.drawing.Receiver;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static pl.bzawadka.drawing.FileUtils.fileContent;
@@ -11,17 +12,17 @@ public class CreateCanvasCommandTest {
 
     @Test
     public void createCanvasCommandCanBeInstantiated() throws Exception {
-        CreateCanvasCommand command = new CreateCanvasCommand(new Invoker(), ImmutableList.of(20, 10));
+        CreateCanvasCommand command = new CreateCanvasCommand(new Receiver(), ImmutableList.of(20, 10));
         assertThat(command.commandType).isEqualTo(CREATE_CANVAS);
         assertThat(command.parameters).containsOnly(20, 10);
     }
 
     @Test
     public void executeCreatesEmptyCanvas() {
-        Invoker invoker = new Invoker();
-        CreateCanvasCommand command = new CreateCanvasCommand(invoker, ImmutableList.of(20, 4));
+        Receiver receiver = new Receiver();
+        CreateCanvasCommand command = new CreateCanvasCommand(receiver, ImmutableList.of(20, 4));
         command.execute();
-        assertThat(invoker.drawCanvas()).isEqualTo(fileContent("canvas_20x4.txt"));
+        assertThat(receiver.drawCanvas()).isEqualTo(fileContent("canvas_20x4.txt"));
     }
 
 }

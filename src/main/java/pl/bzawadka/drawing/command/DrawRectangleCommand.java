@@ -1,5 +1,7 @@
 package pl.bzawadka.drawing.command;
 
+import pl.bzawadka.drawing.Command;
+import pl.bzawadka.drawing.Receiver;
 import pl.bzawadka.drawing.shapes.Drawing;
 
 import java.util.List;
@@ -11,16 +13,16 @@ public class DrawRectangleCommand implements Command {
     public static final CommandType commandType = CommandType.DRAW_RECTANGLE;
     public List<Integer> parameters;
 
-    private final Invoker invoker;
+    private final Receiver receiver;
 
-    public DrawRectangleCommand(Invoker invoker, List<Integer> lineCoordinates) {
-        this.invoker = invoker;
+    public DrawRectangleCommand(Receiver receiver, List<Integer> lineCoordinates) {
+        this.receiver = receiver;
         this.parameters = lineCoordinates;
     }
 
     @Override
     public void execute() {
         Drawing rectangle = rectangle(parameters.get(0), parameters.get(1), parameters.get(2), parameters.get(3));
-        invoker.placeDrawing(rectangle);
+        receiver.placeDrawing(rectangle);
     }
 }

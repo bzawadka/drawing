@@ -1,5 +1,7 @@
 package pl.bzawadka.drawing.command;
 
+import pl.bzawadka.drawing.Command;
+import pl.bzawadka.drawing.Receiver;
 import pl.bzawadka.drawing.shapes.Point;
 
 import java.util.List;
@@ -12,10 +14,10 @@ public class BucketFillCommand implements Command {
     public List<Integer> parameters;
     public char character;
 
-    private final Invoker invoker;
+    private final Receiver receiver;
 
-    public BucketFillCommand(Invoker invoker, List<Integer> startingPointCoordinates, Character character) {
-        this.invoker = invoker;
+    public BucketFillCommand(Receiver receiver, List<Integer> startingPointCoordinates, Character character) {
+        this.receiver = receiver;
         this.parameters = startingPointCoordinates;
         this.character = character;
     }
@@ -23,6 +25,6 @@ public class BucketFillCommand implements Command {
     @Override
     public void execute() {
         Point startingPoint = point(parameters.get(0), parameters.get(1));
-        invoker.canvasBucketFill(startingPoint, character);
+        receiver.canvasBucketFill(startingPoint, character);
     }
 }

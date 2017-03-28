@@ -1,5 +1,8 @@
 package pl.bzawadka.drawing.command;
 
+import pl.bzawadka.drawing.Command;
+import pl.bzawadka.drawing.Receiver;
+
 import java.util.List;
 
 public class CreateCanvasCommand implements Command {
@@ -7,15 +10,15 @@ public class CreateCanvasCommand implements Command {
     public static final CommandType commandType = CommandType.CREATE_CANVAS;
     public List<Integer> parameters;
 
-    private final Invoker invoker;
+    private final Receiver receiver;
 
-    public CreateCanvasCommand(Invoker invoker, List<Integer> canvasDimentions) {
-        this.invoker = invoker;
+    public CreateCanvasCommand(Receiver receiver, List<Integer> canvasDimentions) {
+        this.receiver = receiver;
         this.parameters = canvasDimentions;
     }
 
     @Override
     public void execute() {
-        invoker.initializeCanvas(parameters.get(0), parameters.get(1));
+        receiver.initializeCanvas(parameters.get(0), parameters.get(1));
     }
 }

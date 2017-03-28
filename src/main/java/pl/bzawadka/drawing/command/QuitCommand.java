@@ -1,17 +1,20 @@
 package pl.bzawadka.drawing.command;
 
+import pl.bzawadka.drawing.Command;
+import pl.bzawadka.drawing.Receiver;
+
 public class QuitCommand implements Command {
 
     public static final CommandType commandType = CommandType.QUIT;
 
-    private final Invoker invoker;
+    private final Receiver receiver;
 
-    public QuitCommand(Invoker invoker) {
-        this.invoker = invoker;
+    public QuitCommand(Receiver receiver) {
+        this.receiver = receiver;
     }
 
     @Override
     public void execute() {
-        invoker.completeCanvas();
+        receiver.completeCanvas();
     }
 }

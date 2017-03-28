@@ -31,7 +31,7 @@ public class RunnerTest {
         String terminatingCharacter = "C 20 4\nQ\n";
         InputStream in = new ByteArrayInputStream(terminatingCharacter.getBytes());
         PrintStream out = new PrintStream(new ByteArrayOutputStream());
-        new Runner(in, out).run();
+        new Runner(in, out).invokeCommands();
     }
 
 }

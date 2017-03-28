@@ -1,37 +1,41 @@
 package pl.bzawadka.drawing;
 
-import pl.bzawadka.drawing.command.Command;
-import pl.bzawadka.drawing.command.Invoker;
-
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * An invoker object knows how to execute a {@link Command}. The invoker does not
+ * know anything about a concrete command, it knows only about command interface.
+ */
 public class Runner {
     private final InputStream in;
     private final PrintStream out;
+    private Receiver receiver;
 
     public Runner(InputStream in, PrintStream out) {
         requireNonNull(in, "InputStream must be provided");
         requireNonNull(out, "PrintStream must be provided");
         this.in = in;
         this.out = out;
+        this.receiver = new Receiver();
     }
 
-    public void run() {
+    public void invokeCommands() {
         Scanner scanner = new Scanner(in);
-        Invoker invoker = new Invoker();
         do {
             out.print("enter command: ");
+
             String line = scanner.nextLine();
-            Command command = CommandFactory.parse(line, invoker);
+            Command command = CommandFactory.parse(line, receiver);
             if (command != null)
                 command.execute();
-            out.println(invoker.drawCanvas());
 
-        } while (!invoker.isCanvasComplete());
+            out.println(receiver.drawCanvas());
+
+        } while (!receiver.isCanvasComplete());
         scanner.close();
     }
 

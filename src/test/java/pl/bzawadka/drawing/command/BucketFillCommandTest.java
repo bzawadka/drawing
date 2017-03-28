@@ -2,6 +2,7 @@ package pl.bzawadka.drawing.command;
 
 import com.google.common.collect.ImmutableList;
 import org.junit.Test;
+import pl.bzawadka.drawing.Receiver;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static pl.bzawadka.drawing.FileUtils.fileContent;
@@ -11,7 +12,7 @@ public class BucketFillCommandTest {
 
     @Test
     public void bucketFillCommandCanBeInstantiated() throws Exception {
-        BucketFillCommand command = new BucketFillCommand(new Invoker(), ImmutableList.of(1, 2), 'z');
+        BucketFillCommand command = new BucketFillCommand(new Receiver(), ImmutableList.of(1, 2), 'z');
         assertThat(command.commandType).isEqualTo(BUCKET_FILL);
         assertThat(command.parameters).containsOnly(1, 2);
         assertThat(command.character).isEqualTo('z');
@@ -19,14 +20,14 @@ public class BucketFillCommandTest {
 
     @Test
     public void executeFillsBucketOnCanvas() {
-        Invoker invoker = new Invoker();
-        invoker.initializeCanvas(12, 4);
+        Receiver receiver = new Receiver();
+        receiver.initializeCanvas(12, 4);
 
-        new DrawRectangleCommand(invoker, ImmutableList.of(2, 2, 5, 4)).execute();
-        assertThat(invoker.drawCanvas()).isEqualTo(fileContent("canvas_10x4_with_1rectangle.txt"));
+        new DrawRectangleCommand(receiver, ImmutableList.of(2, 2, 5, 4)).execute();
+        assertThat(receiver.drawCanvas()).isEqualTo(fileContent("canvas_10x4_with_1rectangle.txt"));
 
-        new BucketFillCommand(invoker, ImmutableList.of(3, 3), 'Z').execute();
-        assertThat(invoker.drawCanvas()).isEqualTo(fileContent("canvas_10x4_with_1rectangle_filled.txt"));
+        new BucketFillCommand(receiver, ImmutableList.of(3, 3), 'Z').execute();
+        assertThat(receiver.drawCanvas()).isEqualTo(fileContent("canvas_10x4_with_1rectangle_filled.txt"));
     }
 
 }
