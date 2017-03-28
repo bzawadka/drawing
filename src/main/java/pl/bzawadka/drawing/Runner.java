@@ -6,10 +6,8 @@ import java.util.Scanner;
 
 import static java.util.Objects.requireNonNull;
 
-/**
- * An invoker object knows how to execute a {@link Command}. The invoker does not
- * know anything about a concrete command, it knows only about command interface.
- */
+@Invoker
+@Client
 public class Runner {
     private final InputStream in;
     private final PrintStream out;
@@ -27,11 +25,10 @@ public class Runner {
         Scanner scanner = new Scanner(in);
         do {
             out.print("enter command: ");
-
             String line = scanner.nextLine();
+
             Command command = CommandFactory.parse(line, canvas);
-            if (command != null)
-                command.execute();
+            command.execute();
 
             out.println(canvas.draw());
 
