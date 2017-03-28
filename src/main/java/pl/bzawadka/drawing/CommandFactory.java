@@ -16,26 +16,32 @@ public class CommandFactory {
     private static final String GROUP_NAME_CHARACTER = "character";
 
     public static Command parse(String input, Receiver receiver) {
-        if (CommandType.QUIT.getCode().toString().equalsIgnoreCase(input))
+        if (startsWithCommandCode(input, CommandType.QUIT))
             return new QuitCommand(receiver);
 
-        if (input.startsWith("c") || input.startsWith("C")) {
+        if (startsWithCommandCode(input, CommandType.CREATE_CANVAS)) {
             return new CreateCanvasCommand(receiver, collectParameters(input));
         }
 
-        if (input.startsWith("l") || input.startsWith("L")) {
+        if (startsWithCommandCode(input, CommandType.DRAW_LINE)) {
             return new DrawLineCommand(receiver, collectParameters(input));
         }
 
-        if (input.startsWith("r") || input.startsWith("R")) {
+        if (startsWithCommandCode(input, CommandType.DRAW_RECTANGLE)) {
             return new DrawRectangleCommand(receiver, collectParameters(input));
         }
 
-        if (input.startsWith("b") || input.startsWith("B")) {
+        if (startsWithCommandCode(input, CommandType.BUCKET_FILL)) {
             return new BucketFillCommand(receiver, collectParameters(input), collectCharacter(input));
         }
 
         throw new IllegalArgumentException("unrecognized command: " + input);
+    }
+
+    private static boolean startsWithCommandCode(String input, CommandType commandType) {
+        String code = commandType.getCode().toString();
+        return input.startsWith(code.toLowerCase()) ||
+                input.startsWith(code.toUpperCase());
     }
 
     private static List<Integer> collectParameters(String input) {
